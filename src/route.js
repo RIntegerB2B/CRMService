@@ -1,0 +1,4 @@
+exports.loadRoutes = function (app) {
+   
+};
+

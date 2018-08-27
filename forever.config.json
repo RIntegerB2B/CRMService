@@ -1,0 +1,7 @@
+{
+    "uid": "rinteger-crm-service",
+    "append": true,
+    "watch": true,
+    "script": "server.js",
+    "sourceDir": "/home/ubuntu/app/rinteger-crm-service/src"
+}
