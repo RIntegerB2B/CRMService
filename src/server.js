@@ -17,7 +17,6 @@ app.use(cors());
 routes.loadRoutes(app);
 app.listen(port);
 
-
 var mongoDbConfig = require('./config/mongoDatabase.config');
 var mongoose = require('mongoose');
 
