@@ -1,4 +1,4 @@
-var customerDetail = require('../model/customer-detail.model');
+var customerDetail = require('../../model/customer-detail.model');
 
 exports.emailSendRequest = function (req, res) {
     customerDetail.find({

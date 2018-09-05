@@ -23,12 +23,12 @@ exports.emailSendRequest = function(req, res)
         secure: false,
         requireTLS: true,
         auth: {
-            user: 'ripsildeveloper3@gmail.com',
-            pass: 'Coding@123'
+            user: 'rintegernotification@gmail.com',
+            pass: 'SellerApp@1'
         }
     });
     var mailOptions = {
-        from: 'ripsildeveloper3@gmail.com',
+        from: 'rintegernotification@gmail.com',
         to: emailId,
         subject: 'welcome to crm'
     }
