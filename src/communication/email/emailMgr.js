@@ -4,18 +4,18 @@ var nodemailer = require('nodemailer');
 
 exports.emailSendRequest = function(req, res)
 {
-    var emailId = req.params.emailId;
+    var email = req.body.email;
     emailDA.emailSendRequest(req, res);
     {
         try {
-            sendEmail(emailId);
+            sendEmail(email);
           }
           catch(error){
             console.log(error);
           }
     }
 }
-    var sendEmail = function (emailId)
+    var sendEmail = function (email)
      {
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -27,10 +27,12 @@ exports.emailSendRequest = function(req, res)
             pass: 'SellerApp@1'
         }
     });
+    var emailMessage= req.body.emailMessage;
     var mailOptions = {
         from: 'rintegernotification@gmail.com',
-        to: emailId,
-        subject: 'welcome to crm'
+        to: email,
+        subject: 'welcome to crm',
+        text: emailMessage
     }
     transporter.sendMail(mailOptions, function (err, info) {
         if (err) {

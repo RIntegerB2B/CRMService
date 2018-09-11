@@ -1,8 +1,10 @@
 var customerDetail = require('../../model/customer-detail.model');
 
 exports.emailSendRequest = function (req, res) {
+    var email = req.body.email;
+    //var emailMessage =  req.body.emailMessage;
     customerDetail.find({
-        'emaildId': req.params.emaildId
+        'email': email
     }).exec(function (err) {
         if (err) {
             res.status(500).send({
@@ -13,5 +15,5 @@ exports.emailSendRequest = function (req, res) {
                 "result": "1"
             });
         }
-    })
+    });
 }

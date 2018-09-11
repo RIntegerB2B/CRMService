@@ -4,7 +4,7 @@ var CustomerSchema = new mongoose.Schema({
     phone: Number,
     address: String,
     email: String
-});
+}); 
 
 const CustomerDetail = mongoose.model('customerDetail', CustomerSchema);
 module.exports = CustomerDetail;
