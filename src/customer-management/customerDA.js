@@ -137,10 +137,10 @@ exports.customerDetailsDelete = function (req, res) {
 } 
  */
 exports.customerDuplicateData = function (req, res) {
+    var duplicatePhoneNos=[];
 CustomerDetail.aggregate([
     { $group:{
         _id:{phone:"$phone"},
-        dups:{$addToSet:"$_id"},
         count:{"$sum":1}
       } 
     },
@@ -148,14 +148,16 @@ CustomerDetail.aggregate([
         count:{"$gt":1}
      }
     }
-    ]).forEach(function(doc) {
-      doc.dups.shift();
-      CustomerDetail.remove({
-          _id: {$in: doc.dups}
+    ]). exec(function (err, res) {
+        console.log(res); // [ { maxBalance: 98 } ]
+        for(var i=0;i<res.length ;i++){
+            duplicatePhoneNos.push(res[i]._id.phone);
+        }
+        console.log(duplicatePhoneNos);
+
+        // Please write the query to get all the records with this duplicateNos
       });
-      console.log(doc.dups);
-   });
-}
+};
 
 
 /* CustomerDetail.mapReduce(
