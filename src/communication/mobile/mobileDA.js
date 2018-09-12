@@ -107,9 +107,9 @@ CustomerDetail.find({
         '$in': mobileNumber
     }
 }), request.post({
-    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mobileNumber +'&message='+ textMessage +'&sender=RIPSIL&type=3'
+    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mobileNumber +'&message='+ textMessage +'&sender=UCCHAL&type=3'
 },
-    function (error, response, body) {
+    function (error, response) {
         if (!error && response.statusCode == 200) {
             {
                 res.status(200).send({
@@ -120,6 +120,7 @@ CustomerDetail.find({
     }
 );
 }
+
 
 
 //http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile=9965437973&message=hello&sender=RIPSIL&type=3

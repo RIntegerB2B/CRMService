@@ -18,20 +18,20 @@ exports.emailSendRequest = function(req, res)
     var sendEmail = function (email)
      {
     let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'smtp.vnetindia.com',
         port: 587,
         secure: false,
         requireTLS: true,
         auth: {
-            user: 'rintegernotification@gmail.com',
-            pass: 'SellerApp@1'
+            user: 'welcome@ucchal.com',
+            pass: 'india@123#'
         }
     });
     var emailMessage= req.body.emailMessage;
     var mailOptions = {
-        from: 'rintegernotification@gmail.com',
+        from: 'welcome@ucchal.com',
         to: email,
-        subject: 'welcome to crm',
+        subject: 'welcome to ucchal',
         text: emailMessage
     }
     transporter.sendMail(mailOptions, function (err, info) {
