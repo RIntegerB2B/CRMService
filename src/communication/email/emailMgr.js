@@ -5,6 +5,7 @@ var nodemailer = require('nodemailer');
 exports.emailSendRequest = function(req, res)
 {
     var email = req.body.email;
+    var emailMessage= req.body.emailMessage;
     emailDA.emailSendRequest(req, res);
     {
         try {
@@ -18,8 +19,8 @@ exports.emailSendRequest = function(req, res)
     var sendEmail = function (email)
      {
     let transporter = nodemailer.createTransport({
-        host: 'smtp.vnetindia.com',
-        port: 587,
+        host: 'smtp.example.com',
+        port: 80 ,
         secure: false,
         requireTLS: true,
         auth: {
@@ -27,7 +28,7 @@ exports.emailSendRequest = function(req, res)
             pass: 'india@123#'
         }
     });
-    var emailMessage= req.body.emailMessage;
+  
     var mailOptions = {
         from: 'welcome@ucchal.com',
         to: email,

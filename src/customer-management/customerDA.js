@@ -5,10 +5,17 @@ var CustomerDetail = require('../model/customer-detail.model');
 exports.createCustomer = function (req, res) {
     for (let i = 0; i <= req.body.length - 1; i++) {
         var customerAccount = new CustomerDetail();
-        customerAccount.name = req.body[i].name;
-        customerAccount.phone = req.body[i].phone;
-        customerAccount.address = req.body[i].address;
+        customerAccount.customerName = req.body[i].customerName;
+        customerAccount.mobileNumber = req.body[i].mobileNumber;
+        customerAccount.whatsAppNo = req.body[i].whatsAppNo;
+        customerAccount.landLine = req.body[i].landLine;
         customerAccount.email = req.body[i].email;
+        customerAccount.companyName = req.body[i].companyName;
+        customerAccount.companyAddress = req.body[i].companyAddress;
+        customerAccount.location = req.body[i].location;
+        customerAccount.gst = req.body[i].gst;
+        customerAccount.customerGrade = req.body[i].customerGrade;
+        customerAccount.brandName = req.body[i].brandName;
         customerAccount.save();
     }
 
@@ -32,10 +39,17 @@ exports.customerDetailsEdit = function (req, res) {
         if (err) {
             console.log('Error:', err);
         } else {
-            customerAcc.name = req.body.name;
-            customerAcc.phone = req.body.phone;
+            customerAcc.customerName = req.body.customerName;
+            customerAcc.mobileNumber = req.body.mobileNumber;
+            customerAcc.whatsAppNo = req.body.whatsAppNo;
+            customerAcc.landLine = req.body.landLine;
             customerAcc.email = req.body.email;
-            customerAcc.address = req.body.address;
+            customerAcc.companyName = req.body.companyName;
+            customerAcc.companyAddress = req.body.companyAddress;
+            customerAcc.location = req.body.location;
+            customerAcc.gst = req.body.gst;
+            customerAcc.customerGrade = req.body.customerGrade;
+            customerAcc.brandName = req.body.brandName;
             customerAcc.save(
                 function (err) {
                     if (err) { // if it contains error return 0
@@ -88,7 +102,7 @@ exports.customerDuplicateData = function (req, res) {
     CustomerDetail.aggregate([{
             $group: {
                 _id: {
-                    phone: "$phone"
+                    mobileNumber: "$mobileNumber"
                 },
                 count: {
                     "$sum": 1
@@ -105,13 +119,13 @@ exports.customerDuplicateData = function (req, res) {
     ]).exec(function (err, data) {
         console.log(res); // [ { maxBalance: 98 } ]
         for (var i = 0; i < data.length; i++) {
-            duplicatePhoneNos.push(data[i]._id.phone);
+            duplicatePhoneNos.push(data[i]._id.mobileNumber);
         }
         console.log(duplicatePhoneNos);
         // Please write the query to get all the records with this duplicateNos
 
         CustomerDetail.find({
-            'phone': {
+            'mobileNumber': {
                 '$in': duplicatePhoneNos
             }
         }, function (err, duplicateData) {

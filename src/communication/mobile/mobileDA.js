@@ -100,14 +100,14 @@ var CustomerDetail = require('../../model/customer-detail.model');
 var request = require('request');
 exports.mobileSendRequest = function (req, res) {
 
-var mobileNumber = req.body.phone;
+var mN = req.body.mobileNumber;
 var textMessage =  req.body.message;
 CustomerDetail.find({
-    'phone': {
-        '$in': mobileNumber
+    'mobileNumber': {
+        '$in': mN
     }
 }), request.post({
-    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mobileNumber +'&message='+ textMessage +'&sender=UCCHAL&type=3'
+    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mN +'&message='+ textMessage +'&sender=UCCHAL&type=3'
 },
     function (error, response) {
         if (!error && response.statusCode == 200) {
