@@ -19,8 +19,8 @@ exports.emailSendRequest = function(req, res)
     var sendEmail = function (email)
      {
     let transporter = nodemailer.createTransport({
-        host: 'smtp.example.com',
-        port: 80 ,
+        host: 'lnx5.vnetindia.com',
+        port: 587 ,
         secure: false,
         requireTLS: true,
         auth: {
@@ -30,7 +30,7 @@ exports.emailSendRequest = function(req, res)
     });
   
     var mailOptions = {
-        from: 'welcome@ucchal.com',
+        from: 'lnx5.vnetindia.com',
         to: email,
         subject: 'welcome to ucchal',
         text: emailMessage

@@ -3,7 +3,7 @@
 var CustomerDetail = require('../model/customer-detail.model');
 
 exports.createCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length - 1; i++) {
+    for (let i = 0; i <= req.body.length; i++) {
         var customerAccount = new CustomerDetail();
         customerAccount.customerName = req.body[i].customerName;
         customerAccount.mobileNumber = req.body[i].mobileNumber;
@@ -17,6 +17,9 @@ exports.createCustomer = function (req, res) {
         customerAccount.customerGrade = req.body[i].customerGrade;
         customerAccount.brandName = req.body[i].brandName;
         customerAccount.save();
+    }
+    for (var i = 0; i < data.length; i++) {
+        duplicatePhoneNos.push(data[i]._id.mobileNumber);
     }
 
 }
