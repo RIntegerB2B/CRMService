@@ -2,7 +2,6 @@ var customerDetail = require('../../model/customer-detail.model');
 
 exports.emailSendRequest = function (req, res) {
     var email = req.body.email;
-    //var emailMessage =  req.body.emailMessage;
     customerDetail.find({
         'email': email
     }).exec(function (err) {
