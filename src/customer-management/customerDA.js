@@ -18,10 +18,6 @@ exports.createCustomer = function (req, res) {
         customerAccount.brandName = req.body[i].brandName;
         customerAccount.save();
     }
-    for (var i = 0; i < data.length; i++) {
-        duplicatePhoneNos.push(data[i]._id.mobileNumber);
-    }
-
 }
 /* find customer details */
 exports.allCustomers = function (req, res) {
