@@ -3,7 +3,7 @@
 var CustomerDetail = require('../model/customer-detail.model');
 
 exports.createCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length; i++) {
+    for (let i = 0; i <= req.body.length-1; i++) {
         var customerAccount = new CustomerDetail();
         customerAccount.customerName = req.body[i].customerName;
         customerAccount.mobileNumber = req.body[i].mobileNumber;
@@ -16,9 +16,16 @@ exports.createCustomer = function (req, res) {
         customerAccount.gst = req.body[i].gst;
         customerAccount.customerGrade = req.body[i].customerGrade;
         customerAccount.brandName = req.body[i].brandName;
-        customerAccount.save();
-    }
-}
+        customerAccount.save(function (err, contentData) {
+            if (err) {
+                res.send(err);
+                console.log(err);
+            } else {
+                res.end();
+                console.log(contentData);
+            }
+    });
+ }}
 /* find customer details */
 exports.allCustomers = function (req, res) {
     CustomerDetail.find({}).select().exec(function (err, customerAcc) {

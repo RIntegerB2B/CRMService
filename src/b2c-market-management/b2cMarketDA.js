@@ -11,8 +11,15 @@ exports.createB2cMarket = function (req, res) {
         b2cMarketCustomer.categoryType = req.body[i].categoryType;
         b2cMarketCustomer.designation = req.body[i].designation;
         b2cMarketCustomer.location = req.body[i].location;
-        b2cMarketCustomer.save();
-    }
+        b2cMarketCustomer.save(function (err, fullData) {
+            if (err) {
+                res.send(err);
+                console.log(err);
+            } else {
+                res.end();
+                console.log(fullData);
+            }
+    });   }
 }
 exports.allB2cMarketCustomers = function (req, res) {
     B2cMarket.find({}).select().exec(function (err, customerAcc) {
