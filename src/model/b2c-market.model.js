@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var B2cMarketSchema = new mongoose.Schema({
     customerName: String,
     gender: String,
-    mobileNumber: Number,
+    mobileNumber: String,
     email: String,
     dateOfBirth: String,
     nationality: String,

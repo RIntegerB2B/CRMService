@@ -9,3 +9,11 @@ exports.createRegisterDetail = function (req, res) {
     }
 
 }
+exports.userRegisterDetail = function (req, res) {
+    try {
+        registerDA.userRegisterDetail(req, res);
+    } catch (error) {
+        console.log(error);
+    }
+
+}

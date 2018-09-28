@@ -2,10 +2,14 @@ var mongoose = require('mongoose');
 var RegisterSchema = new mongoose.Schema({
     userName : String,
     password: String,
-    mobileNumber: Number,
+    mobileNumber: String,
     email: String,
     userType: String,
-    isActive: Boolean
+    isActive: Boolean,
+    smsPermission: Boolean,
+    emailPermission: Boolean,
+    editPermission: Boolean,
+    deletePermission: Boolean
 }); 
  
 const Register = mongoose.model('userdetail', RegisterSchema);

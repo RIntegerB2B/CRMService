@@ -4,7 +4,8 @@ const AdminAccountSchema = new mongoose.Schema({
     userName: String,
     password: String,
     isActive: Boolean,
-    emailId: String
+    access: [String],
+    userType: String
 });
 
 const AdminAccount = mongoose.model('masterdetail', AdminAccountSchema);

@@ -1,4 +1,4 @@
-var AdminAccount = require('./../../model/admin-account.model')
+var AdminAccount = require('./../../model/admin-account.model');
 
 exports.loginTo = function (req, res) {
     AdminAccount.find({
