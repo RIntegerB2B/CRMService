@@ -10,7 +10,7 @@ exports.loginTo = function (req, res) {
                 message: "Some error occurred while retrieving notes."
             });
         } else {
-            res.send(adminDetail[0]);
+            res.status(200).json(adminDetail[0]);
         }
     });
 
