@@ -107,7 +107,7 @@ CustomerDetail.find({
         '$in': mN
     }
 }), request.post({
-    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mN +'&message='+ textMessage +'&sender=RUDRAMMA&type=3'
+    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mN +'&message='+ textMessage +'&sender=RUDRMA&type=3'
 },
     function (error, response) {
         if (!error && response.statusCode == 200) {
