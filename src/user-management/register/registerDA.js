@@ -1,6 +1,6 @@
 'use strict';
 var RegAccount = require('./../../model/register.model');
-
+var AdminAccount = require('./../../model/admin-account.model');
 
 exports.createRegisterDetail = function (req, res) {
     var regAccount = new RegAccount();
@@ -11,10 +11,23 @@ exports.createRegisterDetail = function (req, res) {
     regAccount.userType = req.body.userType;
     regAccount.save(function (err, regData) {
         if (err) {
-            res.send(err);
+            res.status(500).json(err);
             console.log(err);
         } else {
-            res.send(regData);
+            var adminAccount = new AdminAccount();
+            adminAccount.userName = req.body.userName;
+            adminAccount.password = req.body.password;
+            adminAccount.userType = req.body.userType;
+            adminAccount.save(function (err, saData) {
+                if (err) {
+                    res.status(500).json(err);
+                    console.log(err);
+                } else {
+                    res.status(200).json(saData);
+                    console.log(saData);
+                }
+            });
+
         }
     });
 };

@@ -4,7 +4,6 @@ const AdminAccountSchema = new mongoose.Schema({
     userName: String,
     password: String,
     isActive: Boolean,
-    access: [String],
     userType: String
 });
 
