@@ -1,3 +1,5 @@
+/* B2cMarket */
+
 var B2cMarket = require('../model/b2c-market.model');
 exports.createB2cMarket = function (req, res) {
     for (let i = 0; i <= req.body.length-1; i++) {

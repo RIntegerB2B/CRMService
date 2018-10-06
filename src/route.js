@@ -5,6 +5,7 @@ var b2bMarketRoutes = require('./b2b-market-management/b2bMarketRoute');
 var communicationRoutes = require('./communication/communicationRoute');
 var userManagementRoutes = require('./user-management/userManagementRoute');
 var employeeRoutes = require('./employee-management/employeeRoute')
+var vendersRoutes = require('./vendor-management/vendorsRoute')
 exports.loadRoutes = function (app) {
     customerRoutes(app);
     communicationRoutes(app);
@@ -12,6 +13,7 @@ exports.loadRoutes = function (app) {
     b2cMarketRoutes(app);
     b2cCustomerRoutes(app);
     employeeRoutes(app);
+    vendersRoutes(app);
     userManagementRoutes(app);
 };
 

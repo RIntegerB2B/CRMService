@@ -70,7 +70,7 @@ exports.b2bMarketDetailsEdit = function (req, res) {
                                     message: "Some error occurred while retrieving notes."
                                 });
                             } else {
-                                res.status(200).json(customerAcc);
+                                res.status(200).json(customerb2bMarket);
                             }
                         });
                     }

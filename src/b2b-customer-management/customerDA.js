@@ -1,5 +1,5 @@
 'use strict';
-/*  b2bcustomer */
+/*  b2bMarket */
 
 var CustomerDetail = require('../model/customer-detail.model');
 

@@ -1,3 +1,4 @@
+/*  B2cCustomer  */
 var B2cCustomer = require('../model/b2c-customer.model');
 exports.createB2cCustomer = function (req, res) {
     for (let i = 0; i <= req.body.length - 1; i++) {
@@ -54,7 +55,7 @@ exports.b2cCustomerDetailsEdit = function (req, res) {
                             "result": 0
                         });
                     } else {
-                        B2cMarket.find({}).select().exec(function (err, customerb2c) {
+                        B2cCustomer.find({}).select().exec(function (err, customerb2c) {
                             if (err) {
                                 res.status(500).send({
                                     message: "Some error occurred while retrieving notes."

@@ -1,16 +1,23 @@
-var Employee = require('../model/employee.model');
-exports.createEmployee = function (req, res) {
+/* B2cMarket */
+
+var Vendor = require('../model/vendor.model');
+exports.createVendors = function (req, res) {
     for (let i = 0; i <= req.body.length-1; i++) {
-        var employeeDetail = new Employee(req.body[i]);
-        employeeDetail.empName = req.body[i].empName;
-        employeeDetail.gender = req.body[i].gender;
-        employeeDetail.email = req.body[i].email;
-        employeeDetail.mobileNumber = req.body[i].mobileNumber;
-        employeeDetail.dateOfBirth = req.body[i].dateOfBirth;
-        employeeDetail.whatsappNo = req.body[i].whatsappNo;
-        employeeDetail.designation = req.body[i].designation;
-        employeeDetail.addresss = req.body[i].addresss;
-        employeeDetail.save(function (err, fullData) {
+        var vendor = new Vendor(req.body[i]);
+        vendor.vendorName = req.body[i].vendorName;
+        vendor.mobileNumber = req.body[i].mobileNumber;
+        vendor.whatsAppNo = req.body[i].whatsAppNo;
+        vendor.landLine = req.body[i].landLine;
+        vendor.email = req.body[i].email;
+        vendor.vendorService = req.body[i].vendorService;
+        vendor.address = req.body[i].address;
+        vendor.vendorCompanyName = req.body[i].vendorCompanyName;
+        vendor.companyAddress = req.body[i].companyAddress;
+        vendor.vendorGrade = req.body[i].vendorGrade;
+        vendor.location = req.body[i].location;
+        vendor.gstNumber  = req.body[i].gstNumber;
+        
+        vendor.save(function (err, fullData) {
             if (err) {
                 res.send(err);
                 console.log(err);
@@ -20,8 +27,9 @@ exports.createEmployee = function (req, res) {
             }
     });   }
 }
-exports.allEmployeeCustomers = function (req, res) {
-    Employee.find({}).select().exec(function (err, customerAcc) {
+exports.allVendorsCustomers = function (req, res) {
+   
+        Vendor.find({}).select().exec(function (err, customerAcc) {
         if (err) {
             res.status(500).send({
                 message: "Some error occurred while retrieving notes."
@@ -31,22 +39,24 @@ exports.allEmployeeCustomers = function (req, res) {
         }
     });
 }
-exports.employeeDetailsEdit = function (req, res) {
-    Employee.findById(req.params.id, function (err, emplDetail) {
+exports.vendorsEdit = function (req, res) {
+        Vendor.findById(req.params.id, function (err, vendorEdit) {
         if (err) {
             console.log('Error:', err);
         } else {
-            emplDetail.empName = req.body.empName;
-            emplDetail.gender = req.body.gender;
-            emplDetail.email = req.body.email;
-            emplDetail.mobileNumber = req.body.mobileNumber;
-            emplDetail.whatsappNo = req.body.whatsappNo;
-            emplDetail.dateOfBirth = req.body.dateOfBirth;
-          
-            emplDetail.categoryType = req.body.categoryType;
-            emplDetail.designation = req.body.designation;
-            emplDetail.addresss = req.body.addresss;
-            emplDetail.save(
+            vendorEdit.vendorName = req.body.vendorName;
+            vendorEdit.mobileNumber = req.body.mobileNumber;
+            vendorEdit.whatsAppNo = req.body.whatsAppNo;
+            vendorEdit.landLine = req.body.landLine;
+            vendorEdit.email = req.body.email;
+            vendorEdit.vendorService = req.body.vendorService;
+            vendorEdit.address = req.body.address;
+            vendorEdit.vendorCompanyName = req.body.vendorCompanyName;
+            vendorEdit.companyAddress = req.body.companyAddress;
+            vendorEdit.vendorGrade = req.body.vendorGrade;
+            vendorEdit.location = req.body.location;
+            vendorEdit.gstNumber  = req.body.gstNumber;
+            vendorEdit.save(
                 function (err) {
                     if (err) { // if it contains error return 0
                         res.status(500).send({
@@ -54,13 +64,13 @@ exports.employeeDetailsEdit = function (req, res) {
                         });
                     } else {
 
-                        Employee.find({}).select().exec(function (err, customerb2cMarket) {
+                        Vendor.find({}).select().exec(function (err, vendorsDetails) {
                             if (err) {
                                 res.status(500).send({
                                     message: "Some error occurred while retrieving notes."
                                 });
                             } else {
-                                res.status(200).json(customerb2cMarket);
+                                res.status(200).json(vendorsDetails);
                             }
                         });
                     }
@@ -70,14 +80,14 @@ exports.employeeDetailsEdit = function (req, res) {
     });
 
 }
-exports.employeeDetailsDelete = function (req, res) {
-    Employee.findByIdAndRemove(req.params.id, function (err) {
+exports.vendorsDelete = function (req, res) {
+    Vendor.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             res.status(500).send({
                 "result": 0
             });
         } else {
-            Employee.find({}).select().exec(function (err, deleteAcc) {
+            Vendor.find({}).select().exec(function (err, deleteAcc) {
                 if (err) {
                     res.status(500).send({
                         message: "Some error occurred while retrieving notes."
@@ -90,9 +100,9 @@ exports.employeeDetailsDelete = function (req, res) {
     });
 }
 
-exports.employeeDuplicateData = function (req, res) {
+exports.vendorDuplicateData = function (req, res) {
     var duplicatePhoneNos = [];
-    Employee.aggregate([{
+    Vendor.aggregate([{
             $group: {
                 _id: {
                     mobileNumber: "$mobileNumber"
@@ -117,7 +127,7 @@ exports.employeeDuplicateData = function (req, res) {
         console.log(duplicatePhoneNos);
         // Please write the query to get all the records with this duplicateNos
 
-        Employee.find({
+        Vendor.find({
             'mobileNumber': {
                 '$in': duplicatePhoneNos
             }
