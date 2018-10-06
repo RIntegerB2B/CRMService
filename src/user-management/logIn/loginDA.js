@@ -11,26 +11,32 @@ exports.loginTo = function (req, res) {
                 message: "Some error occurred while retrieving notes."
             });
         } else {
-            UserTypePermssionAccount.find({
-                    'userType': adminDetail[0].userType
-                },
-                function (err, fullDetails) {
-                    if (err) {
-                        res.status(500).send({
-                            message: "Some error occurred while retrieving notes."
-                        });
-                    } else {
-                        fullData = fullDetails.concat(adminDetail[0]);
-                        res.status(200).json(fullData);
-                        console.log(fullData);
-                    }
+            if (!adminDetail[0]) {
+                res.status(500).send({
+                    result: 1
                 });
-            /* fullDetails.push(adminDetail);
-            console.log();
-            res.status(200).json(adminDetail[0]); */
+                /* fullDetails.push(adminDetail);
+                console.log();
+                res.status(200).json(adminDetail[0]); */
+            } else {
+                UserTypePermssionAccount.find({
+                        'userType': adminDetail[0].userType
+                    },
+                    function (err, fullDetails) {
+                        if (err) {
+                            res.status(500).send({
+                                message: "Some error occurred while retrieving notes."
+                            });
+                        } else {
+                            fullData = fullDetails.concat(adminDetail[0]);
+                            res.status(200).json(fullData);
+                            console.log(fullData);
+                        }
+                    });
+
+            }
         }
     });
-
 };
 
 exports.createLoginDetail = function (req, res) {

@@ -1,22 +1,23 @@
 'use strict';
+/*  b2bcustomer */
 
-var B2bMarket = require('../model/b2b-market.model');
+var CustomerDetail = require('../model/customer-detail.model');
 
-exports.createB2bMarket = function (req, res) {
+exports.createCustomer = function (req, res) {
     for (let i = 0; i <= req.body.length-1; i++) {
-        var b2bMarketCustomer = new B2bMarket();
-        b2bMarketCustomer.customerName = req.body[i].customerName;
-        b2bMarketCustomer.mobileNumber = req.body[i].mobileNumber;
-        b2bMarketCustomer.whatsAppNo = req.body[i].whatsAppNo;
-        b2bMarketCustomer.landLine = req.body[i].landLine;
-        b2bMarketCustomer.email = req.body[i].email;
-        b2bMarketCustomer.companyName = req.body[i].companyName;
-        b2bMarketCustomer.companyAddress = req.body[i].companyAddress;
-        b2bMarketCustomer.location = req.body[i].location;
-        b2bMarketCustomer.gst = req.body[i].gst;
-        b2bMarketCustomer.customerGrade = req.body[i].customerGrade;
-        b2bMarketCustomer.brandName = req.body[i].brandName;
-        b2bMarketCustomer.save(function (err, contentData) {
+        var customerAccount = new CustomerDetail();
+        customerAccount.customerName = req.body[i].customerName;
+        customerAccount.mobileNumber = req.body[i].mobileNumber;
+        customerAccount.whatsAppNo = req.body[i].whatsAppNo;
+        customerAccount.landLine = req.body[i].landLine;
+        customerAccount.email = req.body[i].email;
+        customerAccount.companyName = req.body[i].companyName;
+        customerAccount.companyAddress = req.body[i].companyAddress;
+        customerAccount.location = req.body[i].location;
+        customerAccount.gst = req.body[i].gst;
+        customerAccount.customerGrade = req.body[i].customerGrade;
+        customerAccount.brandName = req.body[i].brandName;
+        customerAccount.save(function (err, contentData) {
             if (err) {
                 res.send(err);
                 console.log(err);
@@ -27,8 +28,8 @@ exports.createB2bMarket = function (req, res) {
     });
  }}
 /* find customer details */
-exports.allB2bMarketCustomers = function (req, res) {
-    B2bMarket.find({}).select().exec(function (err, customerAcc) {
+exports.allCustomers = function (req, res) {
+    CustomerDetail.find({}).select().exec(function (err, customerAcc) {
         if (err) {
             res.status(500).send({
                 message: "Some error occurred while retrieving notes."
@@ -40,23 +41,23 @@ exports.allB2bMarketCustomers = function (req, res) {
 
 }
 
-exports.b2bMarketDetailsEdit = function (req, res) {
-    B2bMarket.findById(req.params.id, function (err, customerb2bMarket) {
+exports.customerDetailsEdit = function (req, res) {
+    CustomerDetail.findById(req.params.id, function (err, customerAcc) {
         if (err) {
             console.log('Error:', err);
         } else {
-            customerb2bMarket.customerName = req.body.customerName;
-            customerb2bMarket.mobileNumber = req.body.mobileNumber;
-            customerb2bMarket.whatsAppNo = req.body.whatsAppNo;
-            customerb2bMarket.landLine = req.body.landLine;
-            customerb2bMarket.email = req.body.email;
-            customerb2bMarket.companyName = req.body.companyName;
-            customerb2bMarket.companyAddress = req.body.companyAddress;
-            customerb2bMarket.location = req.body.location;
-            customerb2bMarket.gst = req.body.gst;
-            customerb2bMarket.customerGrade = req.body.customerGrade;
-            customerb2bMarket.brandName = req.body.brandName;
-            customerb2bMarket.save(
+            customerAcc.customerName = req.body.customerName;
+            customerAcc.mobileNumber = req.body.mobileNumber;
+            customerAcc.whatsAppNo = req.body.whatsAppNo;
+            customerAcc.landLine = req.body.landLine;
+            customerAcc.email = req.body.email;
+            customerAcc.companyName = req.body.companyName;
+            customerAcc.companyAddress = req.body.companyAddress;
+            customerAcc.location = req.body.location;
+            customerAcc.gst = req.body.gst;
+            customerAcc.customerGrade = req.body.customerGrade;
+            customerAcc.brandName = req.body.brandName;
+            customerAcc.save(
                 function (err) {
                     if (err) { // if it contains error return 0
                         res.status(500).send({
@@ -64,7 +65,7 @@ exports.b2bMarketDetailsEdit = function (req, res) {
                         });
                     } else {
 
-                        B2bMarket.find({}).select().exec(function (err, customerb2bMarket) {
+                        CustomerDetail.find({}).select().exec(function (err, customerAcc) {
                             if (err) {
                                 res.status(500).send({
                                     message: "Some error occurred while retrieving notes."
@@ -81,14 +82,14 @@ exports.b2bMarketDetailsEdit = function (req, res) {
 
 }
 // delete details
-exports.b2bMarketDetailsDelete = function (req, res) {
-    B2bMarket.findByIdAndRemove(req.params.id, function (err) {
+exports.customerDetailsDelete = function (req, res) {
+    CustomerDetail.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             res.status(500).send({
                 "result": 0
             });
         } else {
-            B2bMarket.find({}).select().exec(function (err, deleteAcc) {
+            CustomerDetail.find({}).select().exec(function (err, deleteAcc) {
                 if (err) {
                     res.status(500).send({
                         message: "Some error occurred while retrieving notes."
@@ -103,9 +104,9 @@ exports.b2bMarketDetailsDelete = function (req, res) {
 
 // duplicate customer details
 
-exports.b2bMarketDuplicateData = function (req, res) {
+exports.customerDuplicateData = function (req, res) {
     var duplicatePhoneNos = [];
-    B2bMarket.aggregate([{
+    CustomerDetail.aggregate([{
             $group: {
                 _id: {
                     mobileNumber: "$mobileNumber"
@@ -130,7 +131,7 @@ exports.b2bMarketDuplicateData = function (req, res) {
         console.log(duplicatePhoneNos);
         // Please write the query to get all the records with this duplicateNos
 
-        B2bMarket.find({
+        CustomerDetail.find({
             'mobileNumber': {
                 '$in': duplicatePhoneNos
             }

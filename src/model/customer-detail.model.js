@@ -2,13 +2,13 @@ var mongoose = require('mongoose');
 var CustomerSchema = new mongoose.Schema({
     customerName: String,
     mobileNumber: String,
-    whatsAppNo: Number,
-    landLine: Number,
+    whatsAppNo: String,
+    landLine: String,
     email: String,
     companyName: String,
     companyAddress: String,
     location: String,
-    gst: Number,
+    gst: String,
     customerGrade: String,
     brandName: String,
 }); 

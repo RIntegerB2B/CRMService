@@ -7,9 +7,9 @@ module.exports = function (app) {
         .put(b2cMarketMgr.b2cMarketDetailsEdit);
     app.route('/b2cmarketdelete/:id')
         .delete(b2cMarketMgr.b2cMarketDetailsDelete);
-    app.route('/allb2ccustomer')
+    app.route('/allb2cmarket')
         .get(b2cMarketMgr.allB2cMarketCustomers);
-    app.route('/duplicateb2ccustomer')
+    app.route('/duplicateb2cmarket')
         .get(b2cMarketMgr.b2cMarketDuplicateData);
 
 }
