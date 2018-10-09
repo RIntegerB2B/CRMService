@@ -1,7 +1,7 @@
 /*  B2cCustomer  */
 var B2cCustomer = require('../model/b2c-customer.model');
 exports.createB2cCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length - 1; i++) {
+    for (let i = 0; i <= req.body.length-1; i++) {
         var b2cCustomer = new B2cCustomer(req.body[i]);
         b2cCustomer.customerName = req.body[i].customerName;
         b2cCustomer.gender = req.body[i].gender;
@@ -12,7 +12,7 @@ exports.createB2cCustomer = function (req, res) {
         b2cCustomer.categoryType = req.body[i].categoryType;
         b2cCustomer.designation = req.body[i].designation;
         b2cCustomer.location = req.body[i].location;
-        b2cCustomer.save(function (err, fullData) {
+        b2cMarketCustomer.save(function (err, fullData) {
             if (err) {
                 res.send(err);
                 console.log(err);
@@ -20,9 +20,30 @@ exports.createB2cCustomer = function (req, res) {
                 res.end();
                 console.log(fullData);
             }
-        });
-    }
+    });   }
 }
+exports.singleB2cCustomer  = function (req, res) {
+    var b2cCustomer = new B2cCustomer();
+        b2cCustomer.customerName = req.body.customerName;
+        b2cCustomer.gender = req.body.gender;
+        b2cCustomer.mobileNumber = req.body.mobileNumber;
+        b2cCustomer.email = req.body.email;
+        b2cCustomer.dateOfBirth = req.body.dateOfBirth;
+        b2cCustomer.nationality = req.body.nationality;
+        b2cCustomer.categoryType = req.body.categoryType;
+        b2cCustomer.designation = req.body.designation;
+        b2cCustomer.location = req.body.location;
+        b2cCustomer.save(function (err, contentData) {
+            if (err) {
+                res.status(500).send({
+                    message: "Some error occurred while retrieving notes."
+                });
+            } else {
+                res.status(200).json(contentData);
+            }
+});
+}
+
 exports.allB2cCustomers = function (req, res) {
     B2cCustomer.find({}).select().exec(function (err, customerAcc) {
         if (err) {

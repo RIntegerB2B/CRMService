@@ -23,6 +23,27 @@ exports.createB2cMarket = function (req, res) {
             }
     });   }
 }
+exports.singleB2cMarket  = function (req, res) {
+        var b2cMarketCustomer = new B2cMarket();
+        b2cMarketCustomer.customerName = req.body.customerName;
+        b2cMarketCustomer.gender = req.body.gender;
+        b2cMarketCustomer.mobileNumber = req.body.mobileNumber;
+        b2cMarketCustomer.email = req.body.email;
+        b2cMarketCustomer.dateOfBirth = req.body.dateOfBirth;
+        b2cMarketCustomer.nationality = req.body.nationality;
+        b2cMarketCustomer.categoryType = req.body.categoryType;
+        b2cMarketCustomer.designation = req.body.designation;
+        b2cMarketCustomer.location = req.body.location;
+        b2cMarketCustomer.save(function (err, contentData) {
+            if (err) {
+                res.status(500).send({
+                    message: "Some error occurred while retrieving notes."
+                });
+            } else {
+                res.status(200).json(contentData);
+            }
+});
+}
 exports.allB2cMarketCustomers = function (req, res) {
     B2cMarket.find({}).select().exec(function (err, customerAcc) {
         if (err) {

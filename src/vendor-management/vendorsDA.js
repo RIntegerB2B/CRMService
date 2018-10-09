@@ -27,6 +27,30 @@ exports.createVendors = function (req, res) {
             }
     });   }
 }
+exports.singleVendor  = function (req, res) {
+    var vendor = new Vendor();
+    vendor.vendorName = req.body.vendorName;
+        vendor.mobileNumber = req.body.mobileNumber;
+        vendor.whatsAppNo = req.body.whatsAppNo;
+        vendor.landLine = req.body.landLine;
+        vendor.email = req.body.email;
+        vendor.vendorService = req.body.vendorService;
+        vendor.address = req.body.address;
+        vendor.vendorCompanyName = req.body.vendorCompanyName;
+        vendor.companyAddress = req.body.companyAddress;
+        vendor.vendorGrade = req.body.vendorGrade;
+        vendor.location = req.body.location;
+        vendor.gstNumber  = req.body.gstNumber;
+        vendor.save(function (err, contentData) {
+        if (err) {
+            res.status(500).send({
+                message: "Some error occurred while retrieving notes."
+            });
+        } else {
+            res.status(200).json(contentData);
+        }
+});
+}
 exports.allVendorsCustomers = function (req, res) {
    
         Vendor.find({}).select().exec(function (err, customerAcc) {

@@ -10,7 +10,14 @@ exports.createB2bMarket = function (req, res) {
         console.log(error);
     }
 }
+exports.singleB2bMarket = function (req, res) {
+    try {
+        b2bMarketDA.singleB2bMarket(req, res);
+    } catch (error) {
+        console.log(error);
+    }
 
+}
 exports.b2bMarketDetailsEdit = function (req, res) {
     try {
         b2bMarketDA.b2bMarketDetailsEdit(req, res);

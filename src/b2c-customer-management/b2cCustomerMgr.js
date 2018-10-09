@@ -10,7 +10,14 @@ exports.createB2cCustomer = function (req, res) {
         console.log(error);
     }
 }
+exports.singleB2cCustomer = function (req, res) {
+    try {
+        b2cCustomer.singleB2cCustomer(req, res);
+    } catch (error) {
+        console.log(error);
+    }
 
+}
 exports.b2cCustomerDetailsEdit = function (req, res) {
     try {
         b2cCustomer.b2cCustomerDetailsEdit(req, res);

@@ -10,7 +10,14 @@ exports.createEmployee = function (req, res) {
         console.log(error);
     }
 }
+exports.singleEmployee = function (req, res) {
+    try {
+        employeeDA.singleEmployee(req, res);
+    } catch (error) {
+        console.log(error);
+    }
 
+}
 exports.employeeDetailsEdit = function (req, res) {
     try {
         employeeDA.employeeDetailsEdit(req, res);

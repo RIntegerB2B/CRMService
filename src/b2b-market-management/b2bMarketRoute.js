@@ -11,5 +11,7 @@ module.exports = function (app) {
         .get(b2bMarketMgr.allB2bMarketCustomers);
     app.route('/duplicateb2bmarket')
         .get(b2bMarketMgr.b2bMarketDuplicateData);
+        app.route('/singleb2bmarket')
+        .post(b2bMarketMgr.singleB2bMarket);
 
 }

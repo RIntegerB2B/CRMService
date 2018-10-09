@@ -13,7 +13,7 @@ exports.createB2bMarket = function (req, res) {
         b2bMarketCustomer.companyName = req.body[i].companyName;
         b2bMarketCustomer.companyAddress = req.body[i].companyAddress;
         b2bMarketCustomer.location = req.body[i].location;
-        b2bMarketCustomer.gst = req.body[i].gst;
+        b2bMarketCustomer.gstNumber = req.body[i].gstNumber;
         b2bMarketCustomer.customerGrade = req.body[i].customerGrade;
         b2bMarketCustomer.brandName = req.body[i].brandName;
         b2bMarketCustomer.save(function (err, contentData) {
@@ -26,6 +26,30 @@ exports.createB2bMarket = function (req, res) {
             }
     });
  }}
+/* single customer */
+ exports.singleB2bMarket  = function (req, res) {
+    var b2bMarketCustomer = new B2bMarket();
+    b2bMarketCustomer.customerName = req.body.customerName;
+    b2bMarketCustomer.mobileNumber = req.body.mobileNumber;
+    b2bMarketCustomer.whatsAppNo = req.body.whatsAppNo;
+    b2bMarketCustomer.landLine = req.body.landLine;
+    b2bMarketCustomer.email = req.body.email;
+    b2bMarketCustomer.companyName = req.body.companyName;
+    b2bMarketCustomer.companyAddress = req.body.companyAddress;
+    b2bMarketCustomer.location = req.body.location;
+    b2bMarketCustomer.gstNumber = req.body.gstNumber;
+    b2bMarketCustomer.customerGrade = req.body.customerGrade;
+    b2bMarketCustomer.brandName = req.body.brandName;
+    b2bMarketCustomer.save(function (err, contentData) {
+        if (err) {
+            res.status(500).send({
+                message: "Some error occurred while retrieving notes."
+            });
+        } else {
+            res.status(200).json(contentData);
+        }
+});
+}
 /* find customer details */
 exports.allB2bMarketCustomers = function (req, res) {
     B2bMarket.find({}).select().exec(function (err, customerAcc) {
@@ -53,7 +77,7 @@ exports.b2bMarketDetailsEdit = function (req, res) {
             customerb2bMarket.companyName = req.body.companyName;
             customerb2bMarket.companyAddress = req.body.companyAddress;
             customerb2bMarket.location = req.body.location;
-            customerb2bMarket.gst = req.body.gst;
+            customerb2bMarket.gstNumber = req.body.gstNumber;
             customerb2bMarket.customerGrade = req.body.customerGrade;
             customerb2bMarket.brandName = req.body.brandName;
             customerb2bMarket.save(

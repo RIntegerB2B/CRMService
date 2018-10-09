@@ -10,6 +10,14 @@ exports.createVendors = function (req, res) {
         console.log(error);
     }
 }
+exports.singleVendor = function (req, res) {
+    try {
+        vendorsDA.singleVendor(req, res);
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 exports.vendorsEdit = function (req, res) {
     try {

@@ -11,5 +11,8 @@ module.exports = function (app) {
         .get(vendorsMgr.allVendorsCustomers);
     app.route('/duplicatevendor')
         .get(vendorsMgr.vendorDuplicateData);
+    app.route('/singlevendor')
+        .post(vendorsMgr.singleVendor);
+
 
 }

@@ -19,6 +19,14 @@ exports.b2cMarketDetailsEdit = function (req, res) {
     }
 
 }
+exports.singleB2cMarket = function (req, res) {
+    try {
+        b2cMarketDA.singleB2cMarket(req, res);
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 exports.b2cMarketDetailsDelete = function (req, res) {
     try {

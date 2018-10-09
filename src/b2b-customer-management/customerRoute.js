@@ -13,4 +13,6 @@ module.exports = function (app) {
         .get(customerMgr.allCustomers);
     app.route('/duplicatecustomers')
         .get(customerMgr.customerDuplicateData);
+    app.route('/singlecustomer')
+        .post(customerMgr.singleCustomers);
 }

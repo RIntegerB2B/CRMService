@@ -8,9 +8,9 @@ var EmployeeSchema = new mongoose.Schema({
     mobileNumber: String,
     whatsappNo: String,
     dateOfBirth: String,
+    dateOfJoin: String,
     designation: String,
     addresss: String
 }); 
- 
 const Employee = mongoose.model('employee', EmployeeSchema);
 module.exports = Employee;

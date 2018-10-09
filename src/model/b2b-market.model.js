@@ -8,7 +8,7 @@ var B2bMarketSchema = new mongoose.Schema({
     companyName: String,
     companyAddress: String,
     location: String,
-    gst: String,
+    gstNumber: String,
     customerGrade: String,
     brandName: String,
 }); 

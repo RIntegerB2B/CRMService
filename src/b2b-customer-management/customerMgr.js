@@ -36,6 +36,15 @@ exports.allCustomers = function (req, res) {
     }
 
 }
+exports.singleCustomers = function (req, res) {
+    try {
+        customerDA.singleCustomers(req, res);
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
 exports.customerDuplicateData = function (req, res) {
     try {
         customerDA.customerDuplicateData(req, res);

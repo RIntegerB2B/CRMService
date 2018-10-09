@@ -11,5 +11,7 @@ module.exports = function (app) {
         .get(employeeMgr.allEmployeeCustomers);
     app.route('/duplicateemployee')
         .get(employeeMgr.employeeDuplicateData);
+        app.route('/singleemployee')
+        .post(employeeMgr.singleEmployee);
 
 }

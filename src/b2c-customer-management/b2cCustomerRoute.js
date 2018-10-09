@@ -11,5 +11,8 @@ module.exports = function (app) {
         .get(b2cCustomerMgr.allB2cCustomers);
     app.route('/duplicateb2ccustomer')
         .get(b2cCustomerMgr.b2cCustomerDuplicateData);
+    app.route('/singleb2ccustomer')
+        .post(b2cCustomerMgr.singleB2cCustomer);
 
+    
 }

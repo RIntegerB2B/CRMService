@@ -3,12 +3,14 @@ exports.createEmployee = function (req, res) {
     for (let i = 0; i <= req.body.length-1; i++) {
         var employeeDetail = new Employee(req.body[i]);
         employeeDetail.empName = req.body[i].empName;
+        employeeDetail.empNo = req.body[i].empNo;
+        employeeDetail.whatsappNo = req.body[i].whatsappNo;
         employeeDetail.gender = req.body[i].gender;
         employeeDetail.email = req.body[i].email;
         employeeDetail.mobileNumber = req.body[i].mobileNumber;
-        employeeDetail.dateOfBirth = req.body[i].dateOfBirth;
-        employeeDetail.whatsappNo = req.body[i].whatsappNo;
+        employeeDetail.dateOfBirth = req.body[i].dateOfBirth;   
         employeeDetail.designation = req.body[i].designation;
+        employeeDetail.dateOfJoin = req.body[i].dateOfJoin;
         employeeDetail.addresss = req.body[i].addresss;
         employeeDetail.save(function (err, fullData) {
             if (err) {
@@ -19,6 +21,28 @@ exports.createEmployee = function (req, res) {
                 console.log(fullData);
             }
     });   }
+}
+exports.singleEmployee  = function (req, res) {
+        var employeeDetail = new Employee();
+        employeeDetail.empName = req.body.empName;
+        employeeDetail.empNo = req.body.empNo;
+        employeeDetail.whatsappNo = req.body.whatsappNo;
+        employeeDetail.gender = req.body.gender;
+        employeeDetail.email = req.body.email;
+        employeeDetail.mobileNumber = req.body.mobileNumber;
+        employeeDetail.dateOfBirth = req.body.dateOfBirth;   
+        employeeDetail.designation = req.body.designation;
+        employeeDetail.dateOfJoin = req.body.dateOfJoin;
+        employeeDetail.addresss = req.body.addresss;
+        employeeDetail.save(function (err, contentData) {
+            if (err) {
+                res.status(500).send({
+                    message: "Some error occurred while retrieving notes."
+                });
+            } else {
+                res.status(200).json(contentData);
+            }
+});
 }
 exports.allEmployeeCustomers = function (req, res) {
     Employee.find({}).select().exec(function (err, customerAcc) {
@@ -42,7 +66,6 @@ exports.employeeDetailsEdit = function (req, res) {
             emplDetail.mobileNumber = req.body.mobileNumber;
             emplDetail.whatsappNo = req.body.whatsappNo;
             emplDetail.dateOfBirth = req.body.dateOfBirth;
-          
             emplDetail.categoryType = req.body.categoryType;
             emplDetail.designation = req.body.designation;
             emplDetail.addresss = req.body.addresss;
