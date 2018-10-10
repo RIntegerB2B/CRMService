@@ -10,7 +10,7 @@ var EmployeeSchema = new mongoose.Schema({
     dateOfBirth: String,
     dateOfJoin: String,
     designation: String,
-    addresss: String
+    address: String
 }); 
 const Employee = mongoose.model('employee', EmployeeSchema);
 module.exports = Employee;
