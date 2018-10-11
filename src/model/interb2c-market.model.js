@@ -11,5 +11,5 @@ var InterB2cMarketSchema = new mongoose.Schema({
     location: String
 }); 
  
-const InterB2cMarket = mongoose.model('interb2cMarket', InterB2cMarketSchema);
+const InterB2cMarket = mongoose.model('internationalb2cMarket', InterB2cMarketSchema);
 module.exports = InterB2cMarket;

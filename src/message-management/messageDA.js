@@ -1,0 +1,47 @@
+var MessageTempl = require('../model/message-template.model');
+
+exports.createMessage = function (req, res) {
+    var messageTempl = new MessageTempl();
+    messageTempl.messageTitle = req.body.messageTitle;
+    messageTempl.messageDescription = req.body.messageDescription;
+    messageTempl.save(function (err, messageDescription) {
+        if (err) {
+            res.status(500).send({
+                message: "Some error occurred while retrieving notes."
+            });
+        } else {
+            res.status(200).json(messageDescription);
+        }
+    });
+}
+exports.allMessageTemplate = function (req, res) {
+    MessageTempl.find({}).select().exec(function (err, messageDes) {
+        if (err) {
+            res.status(500).send({
+                message: "Some error occurred while retrieving notes."
+            });
+        } else {
+            res.status(200).json(messageDes);
+        }
+    });
+}
+
+exports.messageTemplateDelete = function (req, res) {
+    MessageTempl.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            res.status(500).send({
+                "result": 0
+            });
+        } else {
+            MessageTempl.find({}).select().exec(function (err, deleteMessage) {
+                if (err) {
+                    res.status(500).send({
+                        message: "Some error occurred while retrieving notes."
+                    });
+                } else {
+                    res.status(200).json(deleteMessage);
+                }
+            });
+        }
+    });
+}

@@ -90,7 +90,7 @@ exports.interB2bCustomerDetailsEdit = function (req, res) {
                         });
                     } else {
 
-                        CustomerDetail.find({}).select().exec(function (err, customerAcc) {
+                        InterB2bCustomerDetail.find({}).select().exec(function (err, customerAcc) {
                             if (err) {
                                 res.status(500).send({
                                     message: "Some error occurred while retrieving notes."

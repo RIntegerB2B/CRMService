@@ -69,14 +69,14 @@ exports.interB2cCustomerDetailsEdit = function (req, res) {
             interB2cCustomer.categoryType = req.body.categoryType;
             interB2cCustomer.designation = req.body.designation;
             interB2cCustomer.location = req.body.location;
-            interB2cCustomer.save(
+            InterB2cCustomer.save(
                 function (err) {
                     if (err) { // if it contains error return 0
                         res.status(500).send({
                             "result": 0
                         });
                     } else {
-                        B2cCustomer.find({}).select().exec(function (err, customerb2c) {
+                        InterB2cCustomer.find({}).select().exec(function (err, customerb2c) {
                             if (err) {
                                 res.status(500).send({
                                     message: "Some error occurred while retrieving notes."

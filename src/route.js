@@ -12,6 +12,7 @@ var interb2bCustomerRoutes = require('./interb2b-customer-management/interb2bCus
 var interb2bMarketRoutes = require('./interb2b-market-management/interb2bMarketRoute');
 var interb2cCustomerRoutes = require('./interb2c-customer-management/interb2cCustomerRoute');
 var interb2cMarketRoutes = require('./interb2c-market-management/interb2cMarketRoute');
+var messageRoutes = require('./message-management/messageRoute');
 
 exports.loadRoutes = function (app) {
     customerRoutes(app);
@@ -28,5 +29,6 @@ exports.loadRoutes = function (app) {
     interb2bMarketRoutes(app);
     interb2cCustomerRoutes(app);
     interb2cMarketRoutes(app);
+    messageRoutes(app);
 };
 
