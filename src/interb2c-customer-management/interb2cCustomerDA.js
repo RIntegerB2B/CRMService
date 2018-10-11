@@ -1,18 +1,18 @@
 /*  B2cCustomer  */
-var B2cCustomer = require('../model/b2c-customer.model');
-exports.createB2cCustomer = function (req, res) {
+var InterB2cCustomer = require('../model/interb2c-customer.model');
+exports.createInterB2cCustomer = function (req, res) {
     for (let i = 0; i <= req.body.length-1; i++) {
-        var b2cCustomer = new B2cCustomer(req.body[i]);
-        b2cCustomer.customerName = req.body[i].customerName;
-        b2cCustomer.gender = req.body[i].gender;
-        b2cCustomer.mobileNumber = req.body[i].mobileNumber;
-        b2cCustomer.email = req.body[i].email;
-        b2cCustomer.dateOfBirth = req.body[i].dateOfBirth;
-        b2cCustomer.nationality = req.body[i].nationality;
-        b2cCustomer.categoryType = req.body[i].categoryType;
-        b2cCustomer.designation = req.body[i].designation;
-        b2cCustomer.location = req.body[i].location;
-        b2cCustomer.save(function (err, fullData) {
+        var interB2cCustomer = new InterB2cCustomer(req.body[i]);
+        interB2cCustomer.customerName = req.body[i].customerName;
+        interB2cCustomer.gender = req.body[i].gender;
+        interB2cCustomer.mobileNumber = req.body[i].mobileNumber;
+        interB2cCustomer.email = req.body[i].email;
+        interB2cCustomer.dateOfBirth = req.body[i].dateOfBirth;
+        interB2cCustomer.nationality = req.body[i].nationality;
+        interB2cCustomer.categoryType = req.body[i].categoryType;
+        interB2cCustomer.designation = req.body[i].designation;
+        interB2cCustomer.location = req.body[i].location;
+        interB2cCustomer.save(function (err, fullData) {
             if (err) {
                 res.send(err);
                 console.log(err);
@@ -22,18 +22,18 @@ exports.createB2cCustomer = function (req, res) {
             }
     });   }
 }
-exports.singleB2cCustomer  = function (req, res) {
-    var b2cCustomer = new B2cCustomer();
-        b2cCustomer.customerName = req.body.customerName;
-        b2cCustomer.gender = req.body.gender;
-        b2cCustomer.mobileNumber = req.body.mobileNumber;
-        b2cCustomer.email = req.body.email;
-        b2cCustomer.dateOfBirth = req.body.dateOfBirth;
-        b2cCustomer.nationality = req.body.nationality;
-        b2cCustomer.categoryType = req.body.categoryType;
-        b2cCustomer.designation = req.body.designation;
-        b2cCustomer.location = req.body.location;
-        b2cCustomer.save(function (err, contentData) {
+exports.singleInterB2cCustomer  = function (req, res) {
+    var interB2cCustomer = new InterB2cCustomer();
+        interB2cCustomer.customerName = req.body.customerName;
+        interB2cCustomer.gender = req.body.gender;
+        interB2cCustomer.mobileNumber = req.body.mobileNumber;
+        interB2cCustomer.email = req.body.email;
+        interB2cCustomer.dateOfBirth = req.body.dateOfBirth;
+        interB2cCustomer.nationality = req.body.nationality;
+        interB2cCustomer.categoryType = req.body.categoryType;
+        interB2cCustomer.designation = req.body.designation;
+        interB2cCustomer.location = req.body.location;
+        interB2cCustomer.save(function (err, contentData) {
             if (err) {
                 res.status(500).send({
                     message: "Some error occurred while retrieving notes."
@@ -44,8 +44,8 @@ exports.singleB2cCustomer  = function (req, res) {
 });
 }
 
-exports.allB2cCustomers = function (req, res) {
-    B2cCustomer.find({}).select().exec(function (err, customerAcc) {
+exports.allInterB2cCustomers = function (req, res) {
+    InterB2cCustomer.find({}).select().exec(function (err, customerAcc) {
         if (err) {
             res.status(500).send({
                 message: "Some error occurred while retrieving notes."
@@ -55,21 +55,21 @@ exports.allB2cCustomers = function (req, res) {
         }
     });
 }
-exports.b2cCustomerDetailsEdit = function (req, res) {
-    B2cCustomer.findById(req.params.id, function (err, customerb2c) {
+exports.interB2cCustomerDetailsEdit = function (req, res) {
+    InterB2cCustomer.findById(req.params.id, function (err, interB2cCustomer) {
         if (err) {
             console.log('Error:', err);
         } else {
-            customerb2c.customerName = req.body.customerName;
-            customerb2c.gender = req.body.gender;
-            customerb2c.mobileNumber = req.body.mobileNumber;
-            customerb2c.email = req.body.email;
-            customerb2c.dateOfBirth = req.body.dateOfBirth;
-            customerb2c.nationality = req.body.nationality;
-            customerb2c.categoryType = req.body.categoryType;
-            customerb2c.designation = req.body.designation;
-            customerb2c.location = req.body.location;
-            customerb2c.save(
+            interB2cCustomer.customerName = req.body.customerName;
+            interB2cCustomer.gender = req.body.gender;
+            interB2cCustomer.mobileNumber = req.body.mobileNumber;
+            interB2cCustomer.email = req.body.email;
+            interB2cCustomer.dateOfBirth = req.body.dateOfBirth;
+            interB2cCustomer.nationality = req.body.nationality;
+            interB2cCustomer.categoryType = req.body.categoryType;
+            interB2cCustomer.designation = req.body.designation;
+            interB2cCustomer.location = req.body.location;
+            interB2cCustomer.save(
                 function (err) {
                     if (err) { // if it contains error return 0
                         res.status(500).send({
@@ -92,14 +92,14 @@ exports.b2cCustomerDetailsEdit = function (req, res) {
     });
 
 }
-exports.b2cCustomerDetailsDelete = function (req, res) {
-    B2cCustomer.findByIdAndRemove(req.params.id, function (err) {
+exports.interB2cCustomerDetailsDelete = function (req, res) {
+    InterB2cCustomer.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             res.status(500).send({
                 "result": 0
             });
         } else {
-            B2cCustomer.find({}).select().exec(function (err, deleteAcc) {
+            InterB2cCustomer.find({}).select().exec(function (err, deleteAcc) {
                 if (err) {
                     res.status(500).send({
                         message: "Some error occurred while retrieving notes."
@@ -112,9 +112,9 @@ exports.b2cCustomerDetailsDelete = function (req, res) {
     });
 }
 
-exports.b2cCustomerDuplicateData = function (req, res) {
+exports.interB2cCustomerDuplicateData = function (req, res) {
     var duplicatePhoneNos = [];
-    B2cCustomer.aggregate([{
+    InterB2cCustomer.aggregate([{
             $group: {
                 _id: {
                     mobileNumber: "$mobileNumber"
@@ -139,7 +139,7 @@ exports.b2cCustomerDuplicateData = function (req, res) {
         console.log(duplicatePhoneNos);
         // Please write the query to get all the records with this duplicateNos
 
-        B2cCustomer.find({
+        InterB2cCustomer.find({
             'mobileNumber': {
                 '$in': duplicatePhoneNos
             }

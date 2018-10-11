@@ -6,8 +6,13 @@ var communicationRoutes = require('./communication/communicationRoute');
 var userManagementRoutes = require('./user-management/userManagementRoute');
 var employeeRoutes = require('./employee-management/employeeRoute');
 var vendersRoutes = require('./vendor-management/vendorsRoute');
-var otherRoutes = require('./other-customer-management/otherRoute')
-var agentRoutes = require('./agent-management/agentRoute')
+var otherRoutes = require('./other-customer-management/otherRoute');
+var agentRoutes = require('./agent-management/agentRoute');
+var interb2bCustomerRoutes = require('./interb2b-customer-management/interb2bCustomerRoute');
+var interb2bMarketRoutes = require('./interb2b-market-management/interb2bMarketRoute');
+var interb2cCustomerRoutes = require('./interb2c-customer-management/interb2cCustomerRoute');
+var interb2cMarketRoutes = require('./interb2c-market-management/interb2cMarketRoute');
+
 exports.loadRoutes = function (app) {
     customerRoutes(app);
     communicationRoutes(app);
@@ -19,5 +24,9 @@ exports.loadRoutes = function (app) {
     userManagementRoutes(app);
     otherRoutes(app);
     agentRoutes(app);
+    interb2bCustomerRoutes(app);
+    interb2bMarketRoutes(app);
+    interb2cCustomerRoutes(app);
+    interb2cMarketRoutes(app);
 };
 
