@@ -10,7 +10,15 @@ exports.createMessage = function (req, res) {
                 message: "Some error occurred while retrieving notes."
             });
         } else {
-            res.status(200).json(messageDescription);
+            MessageTempl.find({}).select().exec(function (err, messageDescription) {
+                if (err) {
+                    res.status(500).send({
+                        message: "Some error occurred while retrieving notes."
+                    });
+                } else {
+                    res.status(200).json(messageDescription);
+                }
+            });
         }
     });
 }

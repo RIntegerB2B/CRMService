@@ -13,4 +13,6 @@ module.exports = function (app) {
         .get(registerMgr.userRegisterDetail);
         app.route('/userdetails')
         .post(permissionMgr.permissionUser);
+        app.route('/usertypereg')
+        .get(permissionMgr.getUserType);
 }

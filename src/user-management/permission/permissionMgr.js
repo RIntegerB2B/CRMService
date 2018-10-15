@@ -9,3 +9,11 @@ exports.permissionUser = function (req, res) {
     }
 
 }
+exports.getUserType = function (req, res) {
+    try {
+        permissionDA.getUserType(req, res);
+    } catch (error) {
+        console.log(error);
+    }
+
+}

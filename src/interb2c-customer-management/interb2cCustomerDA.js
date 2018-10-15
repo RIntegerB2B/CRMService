@@ -69,7 +69,7 @@ exports.interB2cCustomerDetailsEdit = function (req, res) {
             interB2cCustomer.categoryType = req.body.categoryType;
             interB2cCustomer.designation = req.body.designation;
             interB2cCustomer.location = req.body.location;
-            InterB2cCustomer.save(
+            interB2cCustomer.save(
                 function (err) {
                     if (err) { // if it contains error return 0
                         res.status(500).send({
