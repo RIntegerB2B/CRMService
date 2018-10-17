@@ -8,7 +8,7 @@ const UserTypePermssionAccountSchema = new mongoose.Schema({
         editPermission: Boolean,
         deletePermission: Boolean,
         smsPermission: Boolean,
-        emailPermission: Boolean
+        emailPermission: Boolean,
     }],
     b2bMarket: [{
         addPermission: Boolean,
@@ -110,6 +110,7 @@ const UserTypePermssionAccountSchema = new mongoose.Schema({
         registerPermission: Boolean,
         messagePermission: Boolean,
     }],
+    mobilePermission: Boolean,
 });
 const UserTypePermssionAccount = mongoose.model('permission', UserTypePermssionAccountSchema);
 module.exports = UserTypePermssionAccount;
