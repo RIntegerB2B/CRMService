@@ -1,10 +1,11 @@
 'use strict';
 
 var InterB2bMarket = require('../model/interb2b-market.model');
-exports.createInterB2bMarket = function (req, res) {
+/* exports.createInterB2bMarket = function (req, res) {
 for (let i = 0; i <= req.body.length-1; i++) {
    var  interB2bMarketCustomer = new InterB2bMarket();
     interB2bMarketCustomer.customerName = req.body[i].customerName;
+    interB2bMarketCustomer.countryCode = req.body[i].countryCode;
     interB2bMarketCustomer.mobileNumber = req.body[i].mobileNumber;
     interB2bMarketCustomer.whatsAppNo = req.body[i].whatsAppNo;
     interB2bMarketCustomer.landLine = req.body[i].landLine;
@@ -12,6 +13,7 @@ for (let i = 0; i <= req.body.length-1; i++) {
     interB2bMarketCustomer.companyName = req.body[i].companyName;
     interB2bMarketCustomer.companyAddress = req.body[i].companyAddress;
     interB2bMarketCustomer.location = req.body[i].location;
+    interB2bMarketCustomer.country = req.body[i].country;
     interB2bMarketCustomer.gstNumber = req.body[i].gstNumber;
     interB2bMarketCustomer.customerGrade = req.body[i].customerGrade;
     interB2bMarketCustomer.brandName = req.body[i].brandName;
@@ -24,8 +26,8 @@ for (let i = 0; i <= req.body.length-1; i++) {
             console.log(fullData);
         }
 });   }
-}
-/* exports.createInterB2bMarket = function (req, res) {
+} */
+exports.createInterB2bMarket = function (req, res) {
     var createData = [];
     for (var i = 0; i <= req.body.length-1; i++) {
         var interB2bMarketCustomer = [];
@@ -51,11 +53,12 @@ for (let i = 0; i <= req.body.length-1; i++) {
         res.status(200).json(sendData);
         console.log('send:', sendData);
     });
-} */
+}
 /* single customer */
 exports.singleInterB2bMarket = function (req, res) {
     var interB2bMarketCustomer = new InterB2bMarket();
     interB2bMarketCustomer.customerName = req.body.customerName;
+    interB2bMarketCustomer.countryCode = req.body.countryCode;
     interB2bMarketCustomer.mobileNumber = req.body.mobileNumber;
     interB2bMarketCustomer.whatsAppNo = req.body.whatsAppNo;
     interB2bMarketCustomer.landLine = req.body.landLine;
@@ -63,6 +66,7 @@ exports.singleInterB2bMarket = function (req, res) {
     interB2bMarketCustomer.companyName = req.body.companyName;
     interB2bMarketCustomer.companyAddress = req.body.companyAddress;
     interB2bMarketCustomer.location = req.body.location;
+    interB2bMarketCustomer.country = req.body.country;
     interB2bMarketCustomer.gstNumber = req.body.gstNumber;
     interB2bMarketCustomer.customerGrade = req.body.customerGrade;
     interB2bMarketCustomer.brandName = req.body.brandName;
@@ -96,6 +100,7 @@ exports.interB2bMarketDetailsEdit = function (req, res) {
             console.log('Error:', err);
         } else {
             customerInterb2bMarket.customerName = req.body.customerName;
+            customerInterb2bMarket.countryCode = req.body.countryCode;
             customerInterb2bMarket.mobileNumber = req.body.mobileNumber;
             customerInterb2bMarket.whatsAppNo = req.body.whatsAppNo;
             customerInterb2bMarket.landLine = req.body.landLine;
@@ -104,6 +109,7 @@ exports.interB2bMarketDetailsEdit = function (req, res) {
             customerInterb2bMarket.companyAddress = req.body.companyAddress;
             customerInterb2bMarket.location = req.body.location;
             customerInterb2bMarket.gstNumber = req.body.gstNumber;
+            customerInterb2bMarket.country = req.body.country;
             customerInterb2bMarket.customerGrade = req.body.customerGrade;
             customerInterb2bMarket.brandName = req.body.brandName;
             customerInterb2bMarket.save(

@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var InterB2cMarketSchema = new mongoose.Schema({
     customerName: String,
-    gender: String,
+    countryCode: String,
     mobileNumber: String,
+    gender: String,
     email: String,
     dateOfBirth: String,
+    country: String,
     nationality: String,
     categoryType: String,
     designation: String,

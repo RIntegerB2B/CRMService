@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var InterB2bCustomerSchema = new mongoose.Schema({
     customerName: String,
+    countryCode: String,
     mobileNumber: String,
     whatsAppNo: String,
     landLine: String,
@@ -8,6 +9,7 @@ var InterB2bCustomerSchema = new mongoose.Schema({
     companyName: String,
     companyAddress: String,
     location: String,
+    country: String,
     gstNumber: String,
     customerGrade: String,
     brandName: String,
