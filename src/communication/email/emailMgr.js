@@ -41,6 +41,8 @@ var sendEmail = function (emailId, textMessage, subjectTitle) {
             console.log(error);
         } else {
             console.log('Email sent: ' + info.response);
+            res.status(200).json(info);
+            
         }
     });
 }

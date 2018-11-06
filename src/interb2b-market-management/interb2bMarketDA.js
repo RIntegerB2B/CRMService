@@ -48,7 +48,7 @@ exports.createInterB2bMarket = function (req, res) {
     InterB2bMarket.insertMany(createData, function (err, sendData) {
         if (err) {
             console.log(err);
-            res.send('Error Data');
+            res.status(500).send('Error Data');
         }
         res.status(200).json(sendData);
         console.log('send:', sendData);
