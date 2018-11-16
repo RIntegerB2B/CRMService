@@ -31,6 +31,7 @@ exports.loginTo = function (req, res) {
                             fullData = fullDetails.concat(adminDetail[0]);
                             res.status(200).json(fullData);
                             console.log(fullData);
+                            console.log(fullDetails);
                         }
                     });
 
