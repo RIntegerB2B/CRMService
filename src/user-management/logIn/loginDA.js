@@ -13,7 +13,7 @@ exports.loginTo = function (req, res) {
         } else {
             if (!adminDetail[0]) {
                 res.status(500).send({
-                    result: 1
+                    message: "user not Register"
                 });
                 /* fullDetails.push(adminDetail);
                 console.log();
@@ -25,7 +25,7 @@ exports.loginTo = function (req, res) {
                     function (err, fullDetails) {
                         if (err) {
                             res.status(500).send({
-                                message: "Some error occurred while retrieving notes."
+                                message: "user type not defined"
                             });
                         } else {
                             fullData = fullDetails.concat(adminDetail[0]);
