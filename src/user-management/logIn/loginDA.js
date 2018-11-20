@@ -8,12 +8,12 @@ exports.loginTo = function (req, res) {
     }, function (err, adminDetail) {
         if (err) {
             res.status(500).send({
-                message: "Some error occurred while retrieving notes."
+                message: "user not Register"
             });
         } else {
             if (!adminDetail[0]) {
                 res.status(500).send({
-                    message: "user not Register"
+                    message: "user not available"
                 });
                 /* fullDetails.push(adminDetail);
                 console.log();
