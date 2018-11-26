@@ -4,30 +4,33 @@
 var CustomerDetail = require('../model/customer-detail.model');
 
 exports.createCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length - 1; i++) {
-        var customerAccount = new CustomerDetail();
-        customerAccount.customerName = req.body[i].customerName;
-        customerAccount.mobileNumber = req.body[i].mobileNumber;
-        customerAccount.whatsAppNo = req.body[i].whatsAppNo;
-        customerAccount.landLine = req.body[i].landLine;
-        customerAccount.email = req.body[i].email;
-        customerAccount.companyName = req.body[i].companyName;
-        customerAccount.companyAddress = req.body[i].companyAddress;
-        customerAccount.location = req.body[i].location;
-        customerAccount.gstNumber = req.body[i].gstNumber;
-        customerAccount.customerGrade = req.body[i].customerGrade;
-        customerAccount.brandName = req.body[i].brandName;
-        customerAccount.save(function (err, contentData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(contentData);
-            }
-        });
+    var createCustomerData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var customerAccount = [];
+        customerAccount[i] = new CustomerDetail();
+        customerAccount[i].customerName = req.body[i].customerName;
+        customerAccount[i].mobileNumber = req.body[i].mobileNumber;
+        customerAccount[i].whatsAppNo = req.body[i].whatsAppNo;
+        customerAccount[i].landLine = req.body[i].landLine;
+        customerAccount[i].email = req.body[i].email;
+        customerAccount[i].companyName = req.body[i].companyName;
+        customerAccount[i].companyAddress = req.body[i].companyAddress;
+        customerAccount[i].location = req.body[i].location;
+        customerAccount[i].gstNumber = req.body[i].gstNumber;
+        customerAccount[i].customerGrade = req.body[i].customerGrade;
+        customerAccount[i].brandName = req.body[i].brandName;
+        createCustomerData.push(customerAccount[i]);
     }
+    CustomerDetail.insertMany(createCustomerData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
+
 exports.singleCustomers = function (req, res) {
     var customerAccount = new CustomerDetail();
     customerAccount.customerName = req.body.customerName;

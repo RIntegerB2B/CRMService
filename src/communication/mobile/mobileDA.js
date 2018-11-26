@@ -6,7 +6,8 @@ var mN = req.body.mobileNumber;
 var textMessage =  req.body.message;
 var smsHeader = req.body.smsHeader;
 request.post({
-    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mN +'&message='+ textMessage +'&sender='+ smsHeader +'&type=3'
+    url: 'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile='+ mN +'&message='+ textMessage +'&sender='+
+     smsHeader +'&type=3'
 },    function (err, smsCheck) {
         if (err) {
             res.status(500).send({
@@ -16,9 +17,6 @@ request.post({
             res.status(200).json(smsCheck);
         }
     }
-);
+); 
 }
 
-
-
-//http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile=9965437973&message=hello&sender=RIPSIL&type=3

@@ -15,7 +15,7 @@ exports.emailSendRequest = function (req, res) {
     }
 }
 
-var sendEmail = function (emailId, textMessage, subjectTitle) {
+var sendEmail = function (email, textMessage, subjectTitle) {
     let transporter = nodemailer.createTransport({
         host: 'lnx5.vnetindia.com',
         port: 465,
@@ -32,7 +32,7 @@ var sendEmail = function (emailId, textMessage, subjectTitle) {
     });
     var mailOptions = {
         from: 'welcome@ucchal.com',
-        to: emailId,
+        to: email,
         subject: subjectTitle,
         html: '<html><body>'+ textMessage +'</body></html>'
     };
