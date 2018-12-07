@@ -1,26 +1,29 @@
 /*  B2cCustomer  */
 var B2cCustomer = require('../model/b2c-customer.model');
 exports.createB2cCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length-1; i++) {
-        var b2cCustomer = new B2cCustomer(req.body[i]);
-        b2cCustomer.customerName = req.body[i].customerName;
-        b2cCustomer.gender = req.body[i].gender;
-        b2cCustomer.mobileNumber = req.body[i].mobileNumber;
-        b2cCustomer.email = req.body[i].email;
-        b2cCustomer.dateOfBirth = req.body[i].dateOfBirth;
-        b2cCustomer.nationality = req.body[i].nationality;
-        b2cCustomer.categoryType = req.body[i].categoryType;
-        b2cCustomer.designation = req.body[i].designation;
-        b2cCustomer.location = req.body[i].location;
-        b2cCustomer.save(function (err, fullData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(fullData);
-            }
-    });   }
+    var createB2cCustomerData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var b2cCustomer = [];
+        b2cCustomer[i] = new B2cCustomer();
+        b2cCustomer[i].customerName = req.body[i].customerName;
+        b2cCustomer[i].gender = req.body[i].gender;
+        b2cCustomer[i].mobileNumber = req.body[i].mobileNumber;
+        b2cCustomer[i].email = req.body[i].email;
+        b2cCustomer[i].dateOfBirth = req.body[i].dateOfBirth;
+        b2cCustomer[i].nationality = req.body[i].nationality;
+        b2cCustomer[i].categoryType = req.body[i].categoryType;
+        b2cCustomer[i].designation = req.body[i].designation;
+        b2cCustomer[i].location = req.body[i].location;
+        createB2cCustomerData.push(b2cCustomer[i]);
+    }
+    B2cCustomer.insertMany(createB2cCustomerData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
 exports.singleB2cCustomer  = function (req, res) {
     var b2cCustomer = new B2cCustomer();

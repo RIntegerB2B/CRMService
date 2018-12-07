@@ -13,6 +13,13 @@ exports.messageTemplateDelete = function (req, res) {
         console.log(error);
     }
 }
+exports.messageTemplateEdit = function (req, res) {
+    try {
+        messageDA.messageTemplateEdit(req, res);
+    } catch (error) {
+        console.log(error);
+    }
+}
 exports.allMessageTemplate = function (req, res) {
     try {
         messageDA.allMessageTemplate(req, res);

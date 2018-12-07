@@ -1,28 +1,32 @@
 /*  B2cCustomer  */
 var InterB2cCustomer = require('../model/interb2c-customer.model');
+
 exports.createInterB2cCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length-1; i++) {
-        var interB2cCustomer = new InterB2cCustomer(req.body[i]);
-        interB2cCustomer.customerName = req.body[i].customerName;
-        interB2cCustomer.countryCode = req.body[i].countryCode;
-        interB2cCustomer.gender = req.body[i].gender;
-        interB2cCustomer.mobileNumber = req.body[i].mobileNumber;
-        interB2cCustomer.email = req.body[i].email;
-        interB2cCustomer.dateOfBirth = req.body[i].dateOfBirth;
-        interB2cCustomer.country = req.body[i].country;
-        interB2cCustomer.nationality = req.body[i].nationality;
-        interB2cCustomer.categoryType = req.body[i].categoryType;
-        interB2cCustomer.designation = req.body[i].designation;
-        interB2cCustomer.location = req.body[i].location;
-        interB2cCustomer.save(function (err, fullData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(fullData);
-            }
-    });   }
+    var createInterB2cCustomerData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var interB2cCustomer = [];
+        interB2cCustomer[i] = new InterB2cCustomer();
+        interB2cCustomer[i].customerName = req.body[i].customerName;
+        interB2cCustomer[i].countryCode = req.body[i].countryCode;
+        interB2cCustomer[i].gender = req.body[i].gender;
+        interB2cCustomer[i].mobileNumber = req.body[i].mobileNumber;
+        interB2cCustomer[i].email = req.body[i].email;
+        interB2cCustomer[i].dateOfBirth = req.body[i].dateOfBirth;
+        interB2cCustomer[i].country = req.body[i].country;
+        interB2cCustomer[i].nationality = req.body[i].nationality;
+        interB2cCustomer[i].categoryType = req.body[i].categoryType;
+        interB2cCustomer[i].designation = req.body[i].designation;
+        interB2cCustomer[i].location = req.body[i].location;
+        createInterB2cCustomerData.push(interB2cCustomer[i]);
+    }
+    InterB2cCustomer.insertMany(createInterB2cCustomerData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
 exports.singleInterB2cCustomer  = function (req, res) {
     var interB2cCustomer = new InterB2cCustomer();

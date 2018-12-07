@@ -1,27 +1,31 @@
 /* B2cMarket */
 
 var B2cMarket = require('../model/b2c-market.model');
+
 exports.createB2cMarket = function (req, res) {
-    for (let i = 0; i <= req.body.length-1; i++) {
-        var b2cMarketCustomer = new B2cMarket(req.body[i]);
-        b2cMarketCustomer.customerName = req.body[i].customerName;
-        b2cMarketCustomer.gender = req.body[i].gender;
-        b2cMarketCustomer.mobileNumber = req.body[i].mobileNumber;
-        b2cMarketCustomer.email = req.body[i].email;
-        b2cMarketCustomer.dateOfBirth = req.body[i].dateOfBirth;
-        b2cMarketCustomer.nationality = req.body[i].nationality;
-        b2cMarketCustomer.categoryType = req.body[i].categoryType;
-        b2cMarketCustomer.designation = req.body[i].designation;
-        b2cMarketCustomer.location = req.body[i].location;
-        b2cMarketCustomer.save(function (err, fullData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(fullData);
-            }
-    });   }
+    var createB2cMarketData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var b2cMarketCustomer = [];
+        b2cMarketCustomer[i] = new B2cMarket();
+        b2cMarketCustomer[i].customerName = req.body[i].customerName;
+        b2cMarketCustomer[i].gender = req.body[i].gender;
+        b2cMarketCustomer[i].mobileNumber = req.body[i].mobileNumber;
+        b2cMarketCustomer[i].email = req.body[i].email;
+        b2cMarketCustomer[i].dateOfBirth = req.body[i].dateOfBirth;
+        b2cMarketCustomer[i].nationality = req.body[i].nationality;
+        b2cMarketCustomer[i].categoryType = req.body[i].categoryType;
+        b2cMarketCustomer[i].designation = req.body[i].designation;
+        b2cMarketCustomer[i].location = req.body[i].location;
+        createB2cMarketData.push(b2cMarketCustomer[i]);
+    }
+    B2cMarket.insertMany(createB2cMarketData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
 exports.singleB2cMarket  = function (req, res) {
         var b2cMarketCustomer = new B2cMarket();

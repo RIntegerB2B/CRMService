@@ -7,5 +7,7 @@ module.exports = function (app) {
         .get(messageMgr.allMessageTemplate);
     app.route('/messagedelete/:id')
         .delete(messageMgr.messageTemplateDelete);
+    app.route('/messageedit/:id')
+        .delete(messageMgr.messageTemplateEdit);
         
 }

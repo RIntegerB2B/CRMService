@@ -23,6 +23,32 @@ exports.createEmployee = function (req, res) {
         });
     }
 }
+exports.createEmployee = function (req, res) {
+    var createEmployeeData = [];
+    for (var i = 0; i <= req.body.length - 1; i++) {
+      var employeeDetail = [];
+      employeeDetail[i] = new Employee();
+      employeeDetail[i].empName = req.body[i].empName;
+      employeeDetail[i].empNo = req.body[i].empNo;
+      employeeDetail[i].whatsappNo = req.body[i].whatsappNo;
+      employeeDetail[i].gender = req.body[i].gender;
+      employeeDetail[i].email = req.body[i].email;
+      employeeDetail[i].mobileNumber = req.body[i].mobileNumber;
+      employeeDetail[i].dateOfBirth = req.body[i].dateOfBirth;
+      employeeDetail[i].designation = req.body[i].designation;
+      employeeDetail[i].dateOfJoin = req.body[i].dateOfJoin;
+      employeeDetail[i].address = req.body[i].address;
+      createEmployeeData.push(employeeDetail[i]);
+    }
+    Employee.insertMany(createEmployeeData, function (err, sendData) {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Error Data');
+      }
+      res.status(200).json(sendData);
+      console.log('send:', sendData);
+    });
+  }
 exports.singleEmployee = function (req, res) {
     var employeeDetail = new Employee();
     employeeDetail.empName = req.body.empName;

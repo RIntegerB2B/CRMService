@@ -2,31 +2,35 @@
 
 var Vendor = require('../model/vendor.model');
 exports.createVendors = function (req, res) {
-    for (let i = 0; i <= req.body.length-1; i++) {
-        var vendor = new Vendor(req.body[i]);
-        vendor.vendorName = req.body[i].vendorName;
-        vendor.mobileNumber = req.body[i].mobileNumber;
-        vendor.whatsAppNo = req.body[i].whatsAppNo;
-        vendor.landLine = req.body[i].landLine;
-        vendor.email = req.body[i].email;
-        vendor.vendorService = req.body[i].vendorService;
-        vendor.address = req.body[i].address;
-        vendor.vendorCompanyName = req.body[i].vendorCompanyName;
-        vendor.companyAddress = req.body[i].companyAddress;
-        vendor.vendorGrade = req.body[i].vendorGrade;
-        vendor.location = req.body[i].location;
-        vendor.gstNumber  = req.body[i].gstNumber;
-        
-        vendor.save(function (err, fullData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(fullData);
-            }
-    });   }
+    var createVendorsData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var vendor = [];
+        vendor[i] = new Vendor();
+        vendor[i].vendorName = req.body[i].vendorName;
+        vendor[i].mobileNumber = req.body[i].mobileNumber;
+        vendor[i].whatsAppNo = req.body[i].whatsAppNo;
+        vendor[i].landLine = req.body[i].landLine;
+        vendor[i].email = req.body[i].email;
+        vendor[i].vendorService = req.body[i].vendorService;
+        vendor[i].address = req.body[i].address;
+        vendor[i].vendorCompanyName = req.body[i].vendorCompanyName;
+        vendor[i].companyAddress = req.body[i].companyAddress;
+        vendor[i].vendorGrade = req.body[i].vendorGrade;
+        vendor[i].location = req.body[i].location;
+        vendor[i].gstNumber  = req.body[i].gstNumber;
+        createVendorsData.push(vendor[i]);
+    }
+    Vendor.insertMany(createVendorsData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
+
+
 exports.singleVendor  = function (req, res) {
     var vendor = new Vendor();
     vendor.vendorName = req.body.vendorName;

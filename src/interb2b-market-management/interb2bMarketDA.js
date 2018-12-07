@@ -1,32 +1,6 @@
 'use strict';
 
 var InterB2bMarket = require('../model/interb2b-market.model');
-/* exports.createInterB2bMarket = function (req, res) {
-for (let i = 0; i <= req.body.length-1; i++) {
-   var  interB2bMarketCustomer = new InterB2bMarket();
-    interB2bMarketCustomer.customerName = req.body[i].customerName;
-    interB2bMarketCustomer.countryCode = req.body[i].countryCode;
-    interB2bMarketCustomer.mobileNumber = req.body[i].mobileNumber;
-    interB2bMarketCustomer.whatsAppNo = req.body[i].whatsAppNo;
-    interB2bMarketCustomer.landLine = req.body[i].landLine;
-    interB2bMarketCustomer.email = req.body[i].email;
-    interB2bMarketCustomer.companyName = req.body[i].companyName;
-    interB2bMarketCustomer.companyAddress = req.body[i].companyAddress;
-    interB2bMarketCustomer.location = req.body[i].location;
-    interB2bMarketCustomer.country = req.body[i].country;
-    interB2bMarketCustomer.gstNumber = req.body[i].gstNumber;
-    interB2bMarketCustomer.customerGrade = req.body[i].customerGrade;
-    interB2bMarketCustomer.brandName = req.body[i].brandName;
-    interB2bMarketCustomer.save(function (err, fullData) {
-        if (err) {
-            res.send(err);
-            console.log(err);
-        } else {
-            res.end();
-            console.log(fullData);
-        }
-});   }
-} */
 exports.createInterB2bMarket = function (req, res) {
     var createData = [];
     for (var i = 0; i <= req.body.length-1; i++) {

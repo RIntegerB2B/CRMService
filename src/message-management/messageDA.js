@@ -53,3 +53,34 @@ exports.messageTemplateDelete = function (req, res) {
         }
     });
 }
+
+exports.messageTemplateEdit = function (req, res) {
+    MessageTempl.findById(req.params.id, function (err, messageTempl) {
+        if (err) {
+            console.log('Error:', err);
+        } else {
+            messageTempl.messageTitle = req.body.messageTitle;
+            messageTempl.messageDescription = req.body.messageDescription;
+            messageTempl.save(
+                function (err) {
+                    if (err) { // if it contains error return 0
+                        res.status(500).send({
+                            "result": 0
+                        });
+                    } else {
+                        MessageTempl.find({}).select().exec(function (err, customerAcc) {
+                            if (err) {
+                                res.status(500).send({
+                                    message: "Some error occurred while retrieving notes."
+                                });
+                            } else {
+                                res.status(200).json(customerAcc);
+                            }
+                        });
+                    }
+                });
+
+        }
+    });
+
+}

@@ -4,31 +4,33 @@
 var InterB2bCustomerDetail = require('../model/interb2b-customer.model');
 
 exports.createInterB2bCustomer = function (req, res) {
-    for (let i = 0; i <= req.body.length - 1; i++) {
-        var interB2bCustomerDetail = new InterB2bCustomerDetail();
-        interB2bCustomerDetail.customerName = req.body[i].customerName;
-        interB2bCustomerDetail.countryCode = req.body[i].countryCode;
-        interB2bCustomerDetail.mobileNumber = req.body[i].mobileNumber;
-        interB2bCustomerDetail.whatsAppNo = req.body[i].whatsAppNo;
-        interB2bCustomerDetail.landLine = req.body[i].landLine;
-        interB2bCustomerDetail.email = req.body[i].email;
-        interB2bCustomerDetail.companyName = req.body[i].companyName;
-        interB2bCustomerDetail.companyAddress = req.body[i].companyAddress;
-        interB2bCustomerDetail.location = req.body[i].location;
-        interB2bCustomerDetail.country = req.body[i].country;
-        interB2bCustomerDetail.gstNumber = req.body[i].gstNumber;
-        interB2bCustomerDetail.customerGrade = req.body[i].customerGrade;
-        interB2bCustomerDetail.brandName = req.body[i].brandName;
-        interB2bCustomerDetail.save(function (err, contentData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(contentData);
-            }
-        });
+    var createInterB2bCustomerData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var interB2bCustomerDetail = [];
+        interB2bCustomerDetail[i] = new InterB2bCustomerDetail();
+        interB2bCustomerDetail[i].customerName = req.body[i].customerName;
+        interB2bCustomerDetail[i].countryCode = req.body[i].countryCode;
+        interB2bCustomerDetail[i].mobileNumber = req.body[i].mobileNumber;
+        interB2bCustomerDetail[i].whatsAppNo = req.body[i].whatsAppNo;
+        interB2bCustomerDetail[i].landLine = req.body[i].landLine;
+        interB2bCustomerDetail[i].email = req.body[i].email;
+        interB2bCustomerDetail[i].companyName = req.body[i].companyName;
+        interB2bCustomerDetail[i].companyAddress = req.body[i].companyAddress;
+        interB2bCustomerDetail[i].location = req.body[i].location;
+        interB2bCustomerDetail[i].country = req.body[i].country;
+        interB2bCustomerDetail[i].gstNumber = req.body[i].gstNumber;
+        interB2bCustomerDetail[i].customerGrade = req.body[i].customerGrade;
+        interB2bCustomerDetail[i].brandName = req.body[i].brandName;
+        createInterB2bCustomerData.push(interB2bCustomerDetail[i]);
     }
+    InterB2bCustomerDetail.insertMany(createInterB2bCustomerData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
 exports.singleInterB2bCustomers = function (req, res) {
     var interB2bCustomerAccount = new InterB2bCustomerDetail();

@@ -1,30 +1,33 @@
 /* international B2cMarket */
 
 var InterB2cMarket = require('../model/interb2c-market.model');
+
 exports.createinterB2cMarket = function (req, res) {
-    for (let i = 0; i <= req.body.length - 1; i++) {
-        var interB2cMarket = new InterB2cMarket(req.body[i]);
-        interB2cMarket.customerName = req.body[i].customerName;
-        interB2cMarket.countryCode = req.body[i].countryCode;
-        interB2cMarket.gender = req.body[i].gender;
-        interB2cMarket.mobileNumber = req.body[i].mobileNumber;
-        interB2cMarket.email = req.body[i].email;
-        interB2cMarket.dateOfBirth = req.body[i].dateOfBirth;
-        interB2cMarket.country = req.body[i].country;
-        interB2cMarket.nationality = req.body[i].nationality;
-        interB2cMarket.categoryType = req.body[i].categoryType;
-        interB2cMarket.designation = req.body[i].designation;
-        interB2cMarket.location = req.body[i].location;
-        interB2cMarket.save(function (err, fullData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(fullData);
-            }
-        });
+    var createinterB2cMarketData = [];
+    for (var i = 0; i <= req.body.length-1; i++) {
+        var interB2cMarket = [];
+        interB2cMarket[i] = new InterB2cMarket();
+        interB2cMarket[i].customerName = req.body[i].customerName;
+        interB2cMarket[i].countryCode = req.body[i].countryCode;
+        interB2cMarket[i].gender = req.body[i].gender;
+        interB2cMarket[i].mobileNumber = req.body[i].mobileNumber;
+        interB2cMarket[i].email = req.body[i].email;
+        interB2cMarket[i].dateOfBirth = req.body[i].dateOfBirth;
+        interB2cMarket[i].country = req.body[i].country;
+        interB2cMarket[i].nationality = req.body[i].nationality;
+        interB2cMarket[i].categoryType = req.body[i].categoryType;
+        interB2cMarket[i].designation = req.body[i].designation;
+        interB2cMarket[i].location = req.body[i].location;
+        createinterB2cMarketData.push(interB2cMarket[i]);
     }
+    InterB2cMarket.insertMany(createinterB2cMarketData, function (err, sendData) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error Data');
+        }
+        res.status(200).json(sendData);
+        console.log('send:', sendData);
+    });
 }
 exports.singleInterB2cMarket = function (req, res) {
     var interB2cMarketCustomer = new InterB2cMarket();

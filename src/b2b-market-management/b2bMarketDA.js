@@ -1,31 +1,33 @@
 'use strict';
 
 var B2bMarket = require('../model/b2b-market.model');
-
-exports.createB2bMarket = function (req, res) {
-    for (let i = 0; i <= req.body.length-1; i++) {
-        var b2bMarketCustomer = new B2bMarket();
-        b2bMarketCustomer.customerName = req.body[i].customerName;
-        b2bMarketCustomer.mobileNumber = req.body[i].mobileNumber;
-        b2bMarketCustomer.whatsAppNo = req.body[i].whatsAppNo;
-        b2bMarketCustomer.landLine = req.body[i].landLine;
-        b2bMarketCustomer.email = req.body[i].email;
-        b2bMarketCustomer.companyName = req.body[i].companyName;
-        b2bMarketCustomer.companyAddress = req.body[i].companyAddress;
-        b2bMarketCustomer.location = req.body[i].location;
-        b2bMarketCustomer.gstNumber = req.body[i].gstNumber;
-        b2bMarketCustomer.customerGrade = req.body[i].customerGrade;
-        b2bMarketCustomer.brandName = req.body[i].brandName;
-        b2bMarketCustomer.save(function (err, contentData) {
-            if (err) {
-                res.send(err);
-                console.log(err);
-            } else {
-                res.end();
-                console.log(contentData);
-            }
+ exports.createB2bMarket = function (req, res) {
+    var createB2bMarket = [];
+    for (var i = 0; i <= req.body.length - 1; i++) {
+      var b2bMarketCustomer = [];
+        b2bMarketCustomer[i] = new B2bMarket();
+        b2bMarketCustomer[i].customerName = req.body[i].customerName;
+        b2bMarketCustomer[i].mobileNumber = req.body[i].mobileNumber;
+        b2bMarketCustomer[i].whatsAppNo = req.body[i].whatsAppNo;
+        b2bMarketCustomer[i].landLine = req.body[i].landLine;
+        b2bMarketCustomer[i].email = req.body[i].email;
+        b2bMarketCustomer[i].companyName = req.body[i].companyName;
+        b2bMarketCustomer[i].companyAddress = req.body[i].companyAddress;
+        b2bMarketCustomer[i].location = req.body[i].location;
+        b2bMarketCustomer[i].gstNumber = req.body[i].gstNumber;
+        b2bMarketCustomer[i].customerGrade = req.body[i].customerGrade;
+        b2bMarketCustomer[i].brandName = req.body[i].brandName;
+        createB2bMarket.push(b2bMarketCustomer[i]);
+    }
+    B2bMarket.insertMany(createB2bMarket, function (err, sendData) {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Error Data');
+      }
+      res.status(200).json(sendData);
+      console.log('send:', sendData);
     });
- }}
+  }
 /* single customer */
  exports.singleB2bMarket  = function (req, res) {
     var b2bMarketCustomer = new B2bMarket();
