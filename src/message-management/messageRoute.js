@@ -8,6 +8,6 @@ module.exports = function (app) {
     app.route('/messagedelete/:id')
         .delete(messageMgr.messageTemplateDelete);
     app.route('/messageedit/:id')
-        .delete(messageMgr.messageTemplateEdit);
+        .put(messageMgr.messageTemplateEdit);
         
 }

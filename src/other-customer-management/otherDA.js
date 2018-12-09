@@ -8,6 +8,7 @@ exports.createOthers = function (req, res) {
     othersDetail[i].gender = req.body[i].gender;
     othersDetail[i].email = req.body[i].email;
     othersDetail[i].mobileNumber = req.body[i].mobileNumber;
+    othersDetail[i].location = req.body[i].location;
     othersDetail[i].address = req.body[i].address;
     createOthersData.push(othersDetail[i]);
   }
@@ -27,6 +28,7 @@ exports.singleOthers = function (req, res) {
   othersDetail.gender = req.body.gender;
   othersDetail.email = req.body.email;
   othersDetail.mobileNumber = req.body.mobileNumber;
+  othersDetail.location = req.body.location;
   othersDetail.address = req.body.address;
   othersDetail.save(function (err, contentData) {
     if (err) {
@@ -58,6 +60,7 @@ exports.othersDetailsEdit = function (req, res) {
       othrDetail.gender = req.body.gender;
       othrDetail.email = req.body.email;
       othrDetail.mobileNumber = req.body.mobileNumber;
+      othersDetail.location = req.body.location;
       othrDetail.addresss = req.body.addresss;
       othrDetail.save(
         function (err) {

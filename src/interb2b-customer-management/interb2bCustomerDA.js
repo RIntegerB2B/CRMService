@@ -159,25 +159,11 @@ exports.interB2bCustomerDuplicateData = function (req, res) {
     ]).exec(function (err, data) {
         console.log(res); // [ { maxBalance: 98 } ]
         for (var i = 0; i < data.length; i++) {
-            console.log(data[i]._id.mobileNumber);
             duplicatePhoneNos.push(data[i]._id.mobileNumber);
         }
         console.log(duplicatePhoneNos);
         // Please write the query to get all the records with this duplicateNos
-        /* CustomerDetail.find({}).select().distinct('mobileNumber').exec(function (err, deleteAcc) {
-        {
-            if (err) {
-                res.status(500).send({
-                    message: "Some error occurred while retrieving notes."
-                });
-           } else {
-                        console.log('duplicateDetails: ', deleteAcc);
-                        res.status(200).json(deleteAcc);
-                    }
-            }
-        }); */
-        // var orginalNumber = [];
-        var secondDuplicateNo = [];
+
         InterB2bCustomerDetail.find({
             'mobileNumber': {
                 '$in': duplicatePhoneNos
@@ -188,18 +174,12 @@ exports.interB2bCustomerDuplicateData = function (req, res) {
                     message: "Some error occurred while retrieving notes."
                 });
             } else {
-                for (var j = duplicatePhoneNos.length ; j <= duplicateData.length; j++) {
-                    secondDuplicateNo.push(duplicateData[j]);
-                    console.log(secondDuplicateNo);
-                }
-                console.log('duplicateDetails: ', secondDuplicateNo);
-                res.status(200).json(secondDuplicateNo);
-
+                console.log('duplicateDetails: ', duplicateData);
+                res.status(200).json(duplicateData)
             }
-
         });
     });
-}
+};
 
 
 
