@@ -7,6 +7,11 @@ app.route('/customers/emailId')
         .post(emailMgr.emailSendRequest);
 app.route('/customers/phone')
         .post(mobileMgr.mobileSendRequest);
+app.route('/customers/allsmsdetails')
+        .get(mobileMgr.findSmsDetails);
+app.route('/totalbalance')
+        .get(mobileMgr.smsTotalBalance);
+
 
 
 app.route('/pushnotification')
