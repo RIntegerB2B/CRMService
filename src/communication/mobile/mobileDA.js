@@ -33,7 +33,7 @@ exports.mobileSendRequest = function (req, res) {
           } else {
 
             res.status(200).json(smsDetail);
-            console.log('textSms', smsDetail);
+            console.log('textNew', smsDetail);
           }
         });
       }
