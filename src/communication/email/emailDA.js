@@ -2,7 +2,7 @@ var customerDetail = require('../../model/customer-detail.model');
 
 exports.emailSendRequest = function (req, res) {
     var email = req.body.email;
-   /*  customerDetail.find({
+    customerDetail.find({
         'email': email
     }).exec(function (err) {
         if (err) {
@@ -14,5 +14,5 @@ exports.emailSendRequest = function (req, res) {
                 "result": 1
             });
         }
-    }); */
+    });
 }

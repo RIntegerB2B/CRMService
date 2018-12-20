@@ -5,11 +5,7 @@ var RegisterSchema = new mongoose.Schema({
     mobileNumber: String,
     email: String,
     userType: String,
-    isActive: Boolean,
-    smsPermission: Boolean,
-    emailPermission: Boolean,
-    editPermission: Boolean,
-    deletePermission: Boolean
+    isActive: Boolean
 }); 
  
 const Register = mongoose.model('userdetail', RegisterSchema);

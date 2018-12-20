@@ -60,7 +60,7 @@ exports.othersDetailsEdit = function (req, res) {
       othrDetail.gender = req.body.gender;
       othrDetail.email = req.body.email;
       othrDetail.mobileNumber = req.body.mobileNumber;
-      othersDetail.location = req.body.location;
+      othrDetail.location = req.body.location;
       othrDetail.addresss = req.body.addresss;
       othrDetail.save(
         function (err) {

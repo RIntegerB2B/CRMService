@@ -3,7 +3,7 @@ var notificationMgr = require ('./notification/notificationMgr');
 var mobileMgr = require('./mobile/mobileMgr');
 
 module.exports = function (app) {
-app.route('/customers/emailId')
+app.route('/customers/mail')
         .post(emailMgr.emailSendRequest);
 app.route('/customers/phone')
         .post(mobileMgr.mobileSendRequest);
