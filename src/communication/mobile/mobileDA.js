@@ -2,17 +2,12 @@ var SmsDetail = require('./../../model/sms.model');
 
 var request = require('request');
 exports.mobileSendRequest = function (req, res) {
+  var inSms = ',9845263436,9880039896,9108329309';
   var smsDetail = new SmsDetail();
   smsDetail.date = new Date();
   smsDetail.smsHeader = req.body.smsHeader;
   smsDetail.smsBody = req.body.smsBody;
-  if (req.body.smsType !== null) {
-    var inSms = ',9845263436,9880039896,9108329309';
-    smsDetail.mobileNumber = req.body.mobileNumber + inSms;
-  } else {
-    smsDetail.mobileNumber = req.body.mobileNumber;
-    console.log(smsDetail.mobileNumber)
-  }
+  smsDetail.mobileNumber = req.body.smsType  != null ? req.body.mobileNumber + inSms : req.body.mobileNumber;
   request(
     'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile=' +
     smsDetail.mobileNumber + '&message=' +
