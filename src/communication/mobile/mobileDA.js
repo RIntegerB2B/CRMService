@@ -7,7 +7,7 @@ exports.mobileSendRequest = function (req, res) {
   smsDetail.date = new Date();
   smsDetail.smsHeader = req.body.smsHeader;
   smsDetail.smsBody = req.body.smsBody;
-  smsDetail.mobileNumber = req.body.smsType  != null ? req.body.mobileNumber + inSms : req.body.mobileNumber;
+  smsDetail.mobileNumber = req.body.smsType  !== null ? req.body.mobileNumber + inSms : req.body.mobileNumber;
   request(
     'http://login.bulksmsgateway.in/sendmessage.php?user=BANASURI&password=Banasuri@12&mobile=' +
     smsDetail.mobileNumber + '&message=' +
