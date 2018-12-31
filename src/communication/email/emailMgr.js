@@ -6,16 +6,17 @@ exports.emailSendRequest = function (req, res) {
     var email = req.body.email;
     var textMessage = req.body.emailMessage;
     var subjectTitle = req.body.subjectTitle;
+    var emailType = req.body.emailType;
     emailDA.emailSendRequest(req, res); {
         try {
-            sendEmail(email, textMessage, subjectTitle);
+            sendEmail(email, textMessage, subjectTitle, emailType);
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-var sendEmail = function (email, textMessage, subjectTitle) {
+var sendEmail = function (email, textMessage, subjectTitle, emailType) {
     let transporter = nodemailer.createTransport({
         host: 'lnx5.vnetindia.com',
         port: 465,
@@ -31,7 +32,7 @@ var sendEmail = function (email, textMessage, subjectTitle) {
         }
     });
     var mailOptions = {
-        from: 'welcome@ucchal.com',
+        from:  emailType + '<welcome@ucchal.com>',
         to: email,
         subject: subjectTitle,
         html: '<html><body>'+ textMessage +'</body></html>'
